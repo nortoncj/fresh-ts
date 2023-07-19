@@ -9,6 +9,8 @@ import Button from "@/components/Button";
 import AuthSocialButton from "./AuthSocialButton";
 import clsx from "clsx";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -30,8 +32,7 @@ const AuthForm = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
       email: "",
       password: "",
     },
@@ -42,11 +43,32 @@ const AuthForm = () => {
 
     if (variant == "REGISTER") {
       // Axios Register
-      axios.post('/api/register', data)
+      axios
+        .post("/api/register", data)
+        .catch(() => {
+          toast.error("Something went wrong!");
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
 
     if (variant == "LOGIN") {
       // NEXT AUTH SIGN IN
+      signIn("credentials", {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid credentials");
+          }
+
+          if (callback?.ok && !callback?.error) {
+            toast.success("Success!");
+          }
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 
@@ -54,6 +76,15 @@ const AuthForm = () => {
     setIsLoading(true);
 
     // NEXT AUTH SIGN IN SOCIAL
+    signIn(action, { redirect: false }).then((callback) => {
+      if (callback?.error) {
+        toast.error("Invalid Credentials");
+      }
+
+      if (callback?.ok && !callback?.error) {
+        toast.success("Loggied in!");
+      }
+    }).finally (() => setIsLoading(false));
   };
 
   return (
@@ -63,19 +94,13 @@ const AuthForm = () => {
           {variant == "REGISTER" && (
             <div className="flex gap-4">
               <Input
-                id="firstName"
-                label="First Name"
+                id="name"
+                label="Name"
                 register={register}
                 errors={errors}
                 disabled={isLoading}
               />
-              <Input
-                id="lastName"
-                label="Last Name"
-                register={register}
-                errors={errors}
-                disabled={isLoading}
-              />
+              
             </div>
           )}
           <Input
@@ -113,7 +138,7 @@ const AuthForm = () => {
           />
           <AuthSocialButton
             icon={BsMicrosoft}
-            onClick={() => socialAction("microsoft")}
+            onClick={() => socialAction("azure-ad")}
           />
         </div>
         <div className="flex gap-2 justify-center text=sm mt-6 text-gray-500">
