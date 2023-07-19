@@ -8,6 +8,7 @@ import Input from "@/components/inputs/Input";
 import Button from "@/components/Button";
 import AuthSocialButton from "./AuthSocialButton";
 import clsx from "clsx";
+import axios from "axios";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -41,6 +42,7 @@ const AuthForm = () => {
 
     if (variant == "REGISTER") {
       // Axios Register
+      axios.post('/api/register', data)
     }
 
     if (variant == "LOGIN") {
