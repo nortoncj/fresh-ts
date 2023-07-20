@@ -40,7 +40,7 @@ const AdminNavbar: React.FC<AdminNavProps> = ({ currentUser, children }) => {
       <aside ref={sidebar} className={isSideOpen ? "block" : ""}>
         <div className="user-page__top">
           <div className="user-page-logo">
-            <a className="user-page-logo" href="../index.html">
+            <a className="user-page-logo" href="/admin">
               <Image
                 height="40"
                 width="40"
