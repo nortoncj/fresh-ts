@@ -11,7 +11,7 @@ import {
   HiTableCells,
   HiMiniUserPlus,
 } from "react-icons/hi2";
-import {MdManageAccounts} from "react-icons/md"
+import { MdManageAccounts } from "react-icons/md";
 import { signOut } from "next-auth/react";
 
 import useConversation from "./useConversation";
@@ -24,34 +24,34 @@ const useAdminRoutes = () => {
     () => [
       {
         label: "Accounts",
-        href: "/admin/profile",
+        href: "/admin/accounts",
         icon: MdManageAccounts,
         active: pathname === "/admin/accounts",
       },
       {
-        label: "Edit Profile",
-        href: "/user/profile",
+        label: "Profile",
+        href: "/admin/profile",
         icon: HiUserCircle,
-        active: pathname === "/user/profile",
+        active: pathname === "/admin/profile",
       },
       {
         label: "Orders",
-        href: "/orders",
+        href: "/admin/orders",
         icon: HiClipboard,
-        active: pathname === "/user/orders",
+        active: pathname === "/admin/orders",
       },
 
       {
         label: "Membership",
-        href: "/membership",
+        href: "/admin/membership",
         icon: HiMiniUserPlus,
-        active: pathname === "/user/membership",
+        active: pathname === "/admin/membership",
       },
       {
         label: "Settings",
         href: "/settings",
         icon: HiCog,
-        active: pathname === "/user/settings",
+        active: pathname === "/admin/settings",
       },
       {
         label: "Logout",

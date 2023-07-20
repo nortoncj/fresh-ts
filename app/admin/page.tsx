@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function AdminHome() {
-  return <div> Admin Home</div>;
+  return <h1> Admin Home</h1>;
 }
