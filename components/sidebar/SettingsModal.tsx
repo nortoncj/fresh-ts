@@ -9,6 +9,7 @@ import Modal from "../Modal";
 import Input from "../inputs/Input";
 import Image from "next/image";
 import Button from "../Button";
+import { CldUploadButton } from "next-cloudinary";
 
 interface SettingsModalProps {
   isOpen?: boolean;
@@ -91,9 +92,15 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     src={image || currentUser?.image || "/images/default.png"}
                   />
                   {/* UPLOAD BUTTON WITH FUNCTIONS TO WRAP AROUND CHANGE BUTTON */}
-                  <Button disabled={isLoading} secondary type="submit">
-                    Change
-                  </Button>
+                  <CldUploadButton
+                    options={{ maxFiles: 1 }}
+                    onUpload={handleUpload}
+                    uploadPreset="vbc2d3jw"
+                  >
+                    <Button disabled={isLoading} secondary type="button">
+                      Change
+                    </Button>
+                  </CldUploadButton>
                 </div>
               </div>
             </div>

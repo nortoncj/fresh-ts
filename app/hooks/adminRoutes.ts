@@ -10,6 +10,7 @@ import {
   HiChartPie,
   HiTableCells,
   HiMiniUserPlus,
+  HiArchiveBox,
 } from "react-icons/hi2";
 import { MdManageAccounts } from "react-icons/md";
 import { signOut } from "next-auth/react";
@@ -40,6 +41,12 @@ const useAdminRoutes = () => {
         icon: HiClipboard,
         active: pathname === "/admin/orders",
       },
+      {
+        label: "Products",
+        href: "/admin/products",
+        icon: HiArchiveBox,
+        active: pathname === "/admin/products",
+      },
 
       {
         label: "Membership",
@@ -49,7 +56,7 @@ const useAdminRoutes = () => {
       },
       {
         label: "Settings",
-        href: "/settings",
+        href: "/admin/settings",
         icon: HiCog,
         active: pathname === "/admin/settings",
       },
