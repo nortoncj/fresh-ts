@@ -58,7 +58,7 @@ model Product {
   categoryId  String    @db.ObjectId // Foreign Key to Category
   category    Category  @relation("CategoryToProduct", fields: [categoryId], references: [id])
   name        String
-  price       Int   
+  price       String   
   isFeatured  Boolean   @default(false)
   isArchived  Boolean   @default(false)
   sizeId      String    @db.ObjectId // Foreign Key to Size
@@ -77,7 +77,7 @@ model Product {
 }
 
 model Order {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   storeId     String    @db.ObjectId // Foreign Key to Store
   store       Store     @relation("StoreToOrder", fields: [storeId], references: [id])
   orderItems OrderItem[] // Relation to OrderItem model

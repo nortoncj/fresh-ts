@@ -2,10 +2,20 @@
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 import { useStoreModal } from "@/app/hooks/use-store-modal";
 import { Modal } from "@/components/ui/modal";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -16,6 +26,8 @@ const formSchema = z.object({
 export const StoreModal = () => {
   const storeModal = useStoreModal();
 
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,7 +36,16 @@ export const StoreModal = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/stores", values);
+
+      toast.success("success");
+    } catch (error) {
+      toast.error("Error on submit.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -39,21 +60,33 @@ export const StoreModal = () => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
-              control={form.control}
-              name="name"
-              render={({ field })=> (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                  <Input placeholder="E-Commerce" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-                  )}
-             / >
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={loading}
+                        placeholder="E-Commerce"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button variant="destructive" onClick={storeModal.onClose}>Cancel</Button>
-                <Button type="submit">Continue</Button>
+                <Button
+                  disabled={loading}
+                  variant="destructive"
+                  onClick={storeModal.onClose}
+                >
+                  Cancel
+                </Button>
+                <Button disabled={loading} type="submit">
+                  Continue
+                </Button>
               </div>
             </form>
           </Form>
