@@ -1,16 +1,24 @@
 "use client";
 
-import Link from "next/link"
+import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import useRoutes from "@/app/hooks/useRoutes";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import MainItem from "./mainItem";
+
+interface MainNavProps {
+  className: string;
+  icon: any;
+  href: string;
+  onClick?: () => void;
+}
 
 export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
-  const routes= useRoutes();
+  const routes = useRoutes();
 
   return (
     <nav
@@ -18,17 +26,15 @@ export function MainNav({
       {...props}
     >
       {routes.map((route) => (
-        <Link
-          key={route.href}
+        <MainItem
+          key={route.label}
           href={route.href}
-          className={cn(
-            'text-sm font-medium transition-colors hover:text-primary',
-            route.active ? 'text-black dark:text-white' : 'text-muted-foreground'
-          )}
-        >
-          {route.label}
-      </Link>
+          label={route.label}
+          icon={route.icon}
+          active={route.active}
+          onClick={route.onClick}
+        />
       ))}
     </nav>
-  )
-};
+  );
+}

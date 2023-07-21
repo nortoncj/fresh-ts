@@ -15,7 +15,7 @@ export default async function UsersLayout({
   }
 
   return (
-    <Sidebar>
+    <>
       <UserNavbar />
       <div className="items-center place-content-center justify-center">
         <Image
@@ -28,6 +28,6 @@ export default async function UsersLayout({
       </div>
 
       <div className="h-full ">{children}</div>
-    </Sidebar>
+    </>
   );
 }
