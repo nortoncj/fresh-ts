@@ -17,11 +17,14 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect("/login");
+  }
   return (
-    <Sidebar>
+    <>
       <ModalProvider />
       {children}
-    </Sidebar>
+    </>
   );
 }
