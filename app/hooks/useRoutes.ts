@@ -10,6 +10,7 @@ import {
   HiChartPie,
   HiTableCells,
   HiMiniUserPlus,
+  HiHome,
 } from "react-icons/hi2";
 import { signOut } from "next-auth/react";
 
@@ -21,7 +22,12 @@ const useRoutes = () => {
 
   const routes = useMemo(
     () => [
-      
+      {        
+        label: 'Overview',
+        href: "/user",
+        icon: HiHome,
+        active: pathname === "/user",
+      },      
       {
         label: "Profile",
         href: "/user/profile",

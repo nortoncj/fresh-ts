@@ -1,4 +1,5 @@
 import Sidebar from "@/components/sidebar/Sidebar";
+import UserNavbar from "@/components/usernav/userNavbar";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import getCurrentUser from "@/app/actions/getCurrentUser";
@@ -15,6 +16,7 @@ export default async function UsersLayout({
 
   return (
     <Sidebar>
+      <UserNavbar />
       <div className="items-center place-content-center justify-center">
         <Image
           height="200"

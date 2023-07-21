@@ -10,7 +10,7 @@ import SettingsModal from "../sidebar/SettingsModal";
 
 interface AdminNavProps {
   currentUser: User;
-  children: any;
+  children: React.ReactNode;
 }
 
 const AdminNavbar: React.FC<AdminNavProps> = ({ currentUser, children }) => {
@@ -48,7 +48,7 @@ const AdminNavbar: React.FC<AdminNavProps> = ({ currentUser, children }) => {
                 className="opcacity-70  "
                 src="/images/icon_camel.png"
               />
-              <h2>Brand Name</h2>
+              <h2>CARDICUS</h2>
             </a>
           </div>
           <div className="close" id="close-btn">
