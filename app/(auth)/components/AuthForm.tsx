@@ -12,16 +12,21 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 type Variant = "LOGIN" | "REGISTER";
 
-const AuthForm = () => {
+const AuthForm = async () => {
   const session = useSession();
   const router = useRouter();
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  
+ 
+  
+
+  useEffect( () => {
     if (session?.status === "authenticated") {
       router.push("/user");
     }
@@ -54,7 +59,7 @@ const AuthForm = () => {
       // Axios Register
       axios
         .post("/api/register", data)
-        .then(() => signIn('credentials', data))
+        .then(() => signIn("credentials", data))
         .catch(() => {
           toast.error("Something went wrong!");
         })
@@ -82,7 +87,7 @@ const AuthForm = () => {
     }
   };
 
-  const socialAction = (action: string) => {
+  const socialAction =  (action: string) => {
     setIsLoading(true);
 
     // NEXT AUTH SIGN IN SOCIAL
@@ -94,7 +99,9 @@ const AuthForm = () => {
 
         if (callback?.ok && !callback?.error) {
           toast.success("Loggied in!");
-          router.push('/user')
+          
+            router.push("/user");
+         
         }
       })
       .finally(() => setIsLoading(false));

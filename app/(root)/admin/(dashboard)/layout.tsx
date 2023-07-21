@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import Sidebar from "@/components/adminbar/Sidebar";
 
 import { ModalProvider } from "@/providers/modal-provider";
-
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import { redirect } from "next/navigation";
+import prismadb from "../../../libs/prismadb";
 
 export const metadata: Metadata = {
   title: "Cardicus | Admin",
@@ -15,10 +17,24 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
+  const userId = currentUser?.id;
 
-  
+  if (!userId) {
+    redirect("/");
+  }
+
+  const store = await prismadb.store.findFirst({
+    where: {
+      userId,
+    },
+  });
+
+  if (store) {
+    redirect(`/admin/${store.id}`);
+  }
+
   return (
-    // @ts-expect-error Server Component
     <Sidebar>
       <ModalProvider />
       {children}

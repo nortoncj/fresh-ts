@@ -13,7 +13,7 @@ generator client {
 model Store {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   name            String
-  userId          String
+  userId          String[]
   billboards      Billboard[] @relation("StoreToBillboard")
   categories      Category[] @relation("StoreToCategory")
   products        Product[]  @relation("StoreToProduct")
