@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import Sidebar from "@/components/adminbar/Sidebar";
+import { ModalProvider } from "@/providers/modal-provider";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { redirect } from "next/navigation";
@@ -28,9 +29,13 @@ export default async function AdminLayout({
     },
   });
 
-  
   if (!store) {
     redirect(`/`);
   }
-  return <>{children}</>;
+  return (
+    <>
+      <ModalProvider />
+      {children}
+    </>
+  );
 }
