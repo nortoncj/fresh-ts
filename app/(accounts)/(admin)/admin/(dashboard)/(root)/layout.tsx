@@ -5,27 +5,26 @@ import Sidebar from "@/components/adminbar/Sidebar";
 import { ModalProvider } from "@/providers/modal-provider";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { redirect } from "next/navigation";
-import prismadb from "../../../libs/prismadb";
+import prismadb from "@/app/libs/prismadb";
 
 export const metadata: Metadata = {
   title: "Cardicus | Admin",
   description: "Admin Portal",
 };
 
-export default async function AdminLayout({
+export default async function AdminInnerLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { storeId: string };
 }) {
   const currentUser = await getCurrentUser();
   const userId = currentUser?.id;
 
-  if (!userId) {
-    redirect("/");
-  }
-
   const store = await prismadb.store.findFirst({
     where: {
+      id: params.storeId,
       userId,
     },
   });
@@ -34,10 +33,5 @@ export default async function AdminLayout({
     redirect(`/admin/${store.id}`);
   }
 
-  return (
-    <Sidebar>
-      <ModalProvider />
-      {children}
-    </Sidebar>
-  );
+  return <>{children}</>;
 }

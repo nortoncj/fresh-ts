@@ -5,6 +5,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 export async function POST(req: Request) {
   try {
     const currentUser = await getCurrentUser();
+    const user = []
     const userId = currentUser?.id;
     const body = await req.json();
 

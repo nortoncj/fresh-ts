@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { useStoreModal } from "../../../hooks/use-store-modal";
+import { useStoreModal } from "../hooks/use-store-modal";
 
-const AdminHome = () => {
+export default function Welcome() {
   const onOpen = useStoreModal((state) => state.onOpen);
   const isOpen = useStoreModal((state) => state.isOpen);
 
@@ -12,8 +12,5 @@ const AdminHome = () => {
       onOpen();
     }
   }, [isOpen, onOpen]);
-
-  return <div className="">Admin Home</div>;
-};
-
-export default AdminHome;
+  return <div> Welcome </div>;
+}

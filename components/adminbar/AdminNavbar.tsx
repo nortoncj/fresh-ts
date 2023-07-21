@@ -13,7 +13,7 @@ interface AdminNavProps {
   children: any;
 }
 
-const AdminNavbar: React.FC<AdminNavProps> =  ({ currentUser, children }) => {
+const AdminNavbar: React.FC<AdminNavProps> = ({ currentUser, children }) => {
   const routes = useAdminRoutes();
   const [isOpen, setIsOpen] = useState(false);
   const [isSideOpen, setSideOpen] = useState(Boolean);

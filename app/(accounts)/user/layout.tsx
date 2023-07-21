@@ -1,13 +1,19 @@
 import Sidebar from "@/components/sidebar/Sidebar";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 export default async function UsersLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
+  if (!currentUser?.id) {
+    redirect("/login");
+  }
+
   return (
-  
     <Sidebar>
       <div className="items-center place-content-center justify-center">
         <Image

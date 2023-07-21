@@ -1,6 +1,6 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import "./user-login-page.css";
-import AdminNavbar from "./Navbar";
+import AdminNavbar from "./AdminNavbar";
 
 
 

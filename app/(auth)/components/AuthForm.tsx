@@ -16,17 +16,13 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 
 type Variant = "LOGIN" | "REGISTER";
 
-const AuthForm = async () => {
+const AuthForm = () => {
   const session = useSession();
   const router = useRouter();
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
 
-  
- 
-  
-
-  useEffect( () => {
+  useEffect(() => {
     if (session?.status === "authenticated") {
       router.push("/user");
     }
@@ -87,7 +83,7 @@ const AuthForm = async () => {
     }
   };
 
-  const socialAction =  (action: string) => {
+  const socialAction = (action: string) => {
     setIsLoading(true);
 
     // NEXT AUTH SIGN IN SOCIAL
@@ -99,9 +95,8 @@ const AuthForm = async () => {
 
         if (callback?.ok && !callback?.error) {
           toast.success("Loggied in!");
-          
-            router.push("/user");
-         
+
+          router.push("/user");
         }
       })
       .finally(() => setIsLoading(false));

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useStoreModal } from "../../../../hooks/use-store-modal";
+import { useStoreModal } from "../../../../../hooks/use-store-modal";
 
 const AdminHome = () => {
   const onOpen = useStoreModal((state) => state.onOpen);
