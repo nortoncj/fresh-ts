@@ -12,7 +12,8 @@ import {
   HiMiniUserPlus,
   HiArchiveBox,
 } from "react-icons/hi2";
-import { MdManageAccounts } from "react-icons/md";
+import {FaLayerGroup} from "react-icons/fa"
+import { MdInvertColors, MdManageAccounts, MdPhotoSizeSelectLarge } from "react-icons/md";
 import { signOut } from "next-auth/react";
 
 import useConversation from "./useConversation";
@@ -48,12 +49,42 @@ const useAdminRoutes = () => {
         icon: HiArchiveBox,
         active: pathname === `/admin/${params.storeId}/products`,
       },
+      {
+        label: "Categories",
+        href: `/admin/${params.storeId}/categories`,
+        icon: FaLayerGroup,
+        active: pathname === `/admin/${params.storeId}/categories`,
+      },
+      {
+        label: "Colors",
+        href: `/admin/${params.storeId}/colors`,
+        icon: MdInvertColors,
+        active: pathname === `/admin/${params.storeId}/colors`,
+      },
+      {
+        label: "Size",
+        href: `/admin/${params.storeId}/size`,
+        icon: MdPhotoSizeSelectLarge,
+        active: pathname === `/admin/${params.storeId}/size`,
+      },
 
       {
         label: "Membership",
         href: `/admin/${params.storeId}/membership`,
         icon: HiMiniUserPlus,
         active: pathname === `/admin/${params.storeId}/membership`,
+      },
+      {
+        label: "Accounts",
+        href: `/admin/${params.storeId}/accounts`,
+        icon: MdManageAccounts,
+        active: pathname === `/admin/${params.storeId}/accounts`,
+      },
+      {
+        label: "Announcements",
+        href: `/admin/${params.storeId}/announcements`,
+        icon: HiMegaphone,
+        active: pathname === `/admin/${params.storeId}/announcements`,
       },
       {
         label: "Settings",

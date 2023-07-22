@@ -23,6 +23,8 @@ export default async function AdminLayout({
     redirect("/login");
   }
 
+  
+
   const store = await prismadb.store.findFirst({
     where: {
       userId,
