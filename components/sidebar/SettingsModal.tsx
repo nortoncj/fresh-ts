@@ -84,13 +84,14 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                   Photo
                 </label>
                 <div className="mt-2 flex items-center gap-x-3">
-                  <Image
-                    width="48"
-                    height="48"
-                    className="rounded-full"
-                    alt="Avatar"
-                    src={image || currentUser?.image || "/images/default.png"}
-                  />
+                  
+                  <div className="avatar">
+                    <div className="w-30 rounded-full">
+                      <img className="rounded-full " src={image || currentUser?.image || "/images/default.png"} />
+                    </div>
+                  </div>
+                  
+                  
                   {/* UPLOAD BUTTON WITH FUNCTIONS TO WRAP AROUND CHANGE BUTTON */}
                   <CldUploadButton
                     options={{ maxFiles: 1 }}

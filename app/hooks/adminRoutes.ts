@@ -12,8 +12,12 @@ import {
   HiMiniUserPlus,
   HiArchiveBox,
 } from "react-icons/hi2";
-import {FaLayerGroup} from "react-icons/fa"
-import { MdInvertColors, MdManageAccounts, MdPhotoSizeSelectLarge } from "react-icons/md";
+import { FaLayerGroup } from "react-icons/fa";
+import {
+  MdInvertColors,
+  MdManageAccounts,
+  MdPhotoSizeSelectLarge,
+} from "react-icons/md";
 import { signOut } from "next-auth/react";
 
 import useConversation from "./useConversation";
@@ -62,10 +66,10 @@ const useAdminRoutes = () => {
         active: pathname === `/admin/${params.storeId}/colors`,
       },
       {
-        label: "Size",
-        href: `/admin/${params.storeId}/size`,
+        label: "Sizes",
+        href: `/admin/${params.storeId}/sizes`,
         icon: MdPhotoSizeSelectLarge,
-        active: pathname === `/admin/${params.storeId}/size`,
+        active: pathname === `/admin/${params.storeId}/sizes`,
       },
 
       {
@@ -73,12 +77,6 @@ const useAdminRoutes = () => {
         href: `/admin/${params.storeId}/membership`,
         icon: HiMiniUserPlus,
         active: pathname === `/admin/${params.storeId}/membership`,
-      },
-      {
-        label: "Accounts",
-        href: `/admin/${params.storeId}/accounts`,
-        icon: MdManageAccounts,
-        active: pathname === `/admin/${params.storeId}/accounts`,
       },
       {
         label: "Announcements",
