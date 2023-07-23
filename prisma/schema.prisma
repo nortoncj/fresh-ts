@@ -91,11 +91,7 @@ model Order {
   @@index([storeId])
 }
 
-enum UserRole {
-  ADMIN
-  PREMIUM
-  USER
-}
+
 
 
 model User {
@@ -105,7 +101,7 @@ model User {
   emailVerified DateTime?
   hashedPassword String?
   image         String?
-  role          UserRole  @default(USER)
+  role          String  @default("Freemium")
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   favoriteIds   String[] @db.ObjectId
