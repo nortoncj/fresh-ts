@@ -92,16 +92,29 @@ model Order {
 }
 
 
-
-
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
+  username      String?   @unique @default( uuid() )
   email         String?   @unique
   emailVerified DateTime?
   hashedPassword String?
   image         String?
   role          String  @default("Freemium")
+  phone         String?
+  title         String?
+  bio           String?
+  address       String?
+  proNouns      String?
+  link1         String?
+  link2         String?
+  fb            String?
+  tw            String?
+  ig            String?
+  li            String?
+  tt            String?
+  yt            String?
+  twt           String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   favoriteIds   String[] @db.ObjectId

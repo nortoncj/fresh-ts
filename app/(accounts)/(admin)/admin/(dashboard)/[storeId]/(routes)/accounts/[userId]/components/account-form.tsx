@@ -50,7 +50,7 @@ export const AccountForm: React.FC<AccountFormProps> = ({ initialData }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Edit category" : "Create category";
+  const title = initialData ? "Edit account" : "Create account";
   const description = initialData ? "Edit an Account." : "Add a new Account";
   const toastMessage = initialData ? "Account updated." : "Account created.";
   const action = initialData ? "Save changes" : "Create";
