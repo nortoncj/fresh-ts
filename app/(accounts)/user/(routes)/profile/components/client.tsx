@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import Link from "next/link";
+import SettingsModal from "@/components/sidebar/SettingsModal";
 
 interface ProfileProps {
   user: User;
@@ -15,9 +16,15 @@ interface ProfileProps {
 export const ProfileClient: React.FC<ProfileProps> = ({ user }) => {
   const router = useRouter();
   const params = useParams();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="">
+      <SettingsModal
+        currentUser={user}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <Heading
@@ -70,7 +77,10 @@ export const ProfileClient: React.FC<ProfileProps> = ({ user }) => {
                 Photo
               </label>
               <div className="mt-2 flex items-center gap-x-3">
-                <div className="cursor-pointer hover:opacity-75 transition">
+                <div
+                  className="cursor-pointer hover:opacity-75 transition"
+                  onClick={() => setIsOpen(true)}
+                >
                   <Avatar user={user} />
                 </div>
               </div>

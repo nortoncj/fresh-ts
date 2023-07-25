@@ -9,6 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Cardicus | Portal",
   description: "Business Cards",
+  icons: {
+    icon: "/images/icon_gld.png",
+    apple: "/images/icon_gld.png",
+  },
 };
 
 export default function RootLayout({
