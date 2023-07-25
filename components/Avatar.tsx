@@ -10,7 +10,7 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ user }) => {
   return (
     <div className="relative">
-      <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
+      <div className="relative inline-block rounded-full overflow-hidden h-12 w-12 md:h-12 md:w-12 lg:w-24 lg:h-24">
         <Image
           alt="Avatar"
           src={user?.image || "/images/default.png"}
