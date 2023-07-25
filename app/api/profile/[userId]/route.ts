@@ -94,7 +94,6 @@ export async function PATCH(
       tt,
       yt,
       twt,
-      password,
     } = body;
 
     if (!userId) {

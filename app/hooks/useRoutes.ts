@@ -22,36 +22,24 @@ const useRoutes = () => {
 
   const routes = useMemo(
     () => [
-      {        
-        label: 'Overview',
+      {
+        label: "Overview",
         href: "/user",
         icon: HiHome,
         active: pathname === "/user",
-      },      
+      },
       {
         label: "Profile",
         href: "/user/profile",
         icon: HiUserCircle,
         active: pathname === "/user/profile",
       },
-      {
-        label: "Orders",
-        href: "/user/orders",
-        icon: HiClipboard,
-        active: pathname === "/user/orders",
-      },
 
       {
-        label: "Membership",
-        href: "/user/membership",
+        label: "Illuminati",
+        href: "/user/illuminati",
         icon: HiMiniUserPlus,
-        active: pathname === "/user/membership",
-      },
-      {
-        label: "Settings",
-        href: "/user/settings",
-        icon: HiCog,
-        active: pathname === "/user/settings",
+        active: pathname === "/user/illuminati",
       },
       {
         label: "Logout",

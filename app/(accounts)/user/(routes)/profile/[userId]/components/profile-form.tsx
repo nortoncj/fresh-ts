@@ -6,7 +6,6 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Trash } from "lucide-react";
 import { User } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
@@ -96,15 +95,12 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(
-          `/api/${params.storeId}/profile/${params.userId}`,
-          data
-        );
+        await axios.patch(`/api/profile/${params.userId}`, data);
       } else {
-        await axios.post(`/api/${params.storeId}/profile`, data);
+        await axios.post(`/api/profile`, data);
       }
       router.refresh();
-      router.push(`/admin/${params.storeId}/profile`);
+      router.push(`/user/profile`);
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error("Something went wrong.");
@@ -116,9 +112,9 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/profile/${params.userId}`);
+      await axios.delete(`/api/profile/${params.userId}`);
       router.refresh();
-      router.push(`/admin/${params.storeId}/profile`);
+      router.push(`/user/profile`);
       toast.success("Account deleted.");
     } catch (error: any) {
       toast.error("Make sure you removed all stores using this account first.");
