@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { useState } from "react";
 import "./cart.component.css";
+import "./navigation.component.css";
+import "./mainpage.css";
 
 import { IoBagOutline, IoCloseOutline, IoSearch } from "react-icons/io5";
 import { Cinzel } from "next/font/google";
@@ -23,6 +25,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
 
   return (
     <>
+    <div className="">
       <section className="top-nav">
         <AnnouncementBar />
         <MobileNav />
@@ -75,9 +78,9 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
                 LOGIN
               </Link>
             </li>
-            <li className="nav-item nav-link nav-login nav-search">
+            <li className="nav-item nav-link nav-login  nav-search">
               <Link className="nav-nav-link_link" href="/login">
-                <IoSearch />
+                <IoSearch className="w-6" />
               </Link>
             </li>
 
@@ -108,12 +111,11 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
               <small id="'items_num">4</small>
             </div>
             <button
-              type="button"
               id="close_btn"
               onClick={() => {
                 setCartOpen(false);
               }}
-              className="close_btn"
+              className="close_btn w-12 h-12"
             >
               <IoCloseOutline />
             </button>
@@ -125,10 +127,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
                 <IoCloseOutline />
               </div>
               <div className="item_img">
-                <img
-                  src="./assets/img/products/NFC-CARD-SAMPLE-PNG-1.png"
-                  alt=""
-                />
+                <img src="/images/default.png" alt="" />
               </div>
               <div className="item_details">
                 <p>Gladius Card</p>
@@ -153,6 +152,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
             <button>Checkout</button>
           </div>
         </div>
+      </div>
       </div>
       <FooterNav />
     </>

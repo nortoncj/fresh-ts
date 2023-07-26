@@ -1,6 +1,11 @@
 import { Fauna_One, Cinzel } from "next/font/google";
 
 const cinzel = Cinzel({ subsets: ["latin"], weight: "400" });
+import {Category} from "@/types"
+
+interface FilterProps {
+    data: Category[];
+}
 
 export const Filter = () => {
     return (

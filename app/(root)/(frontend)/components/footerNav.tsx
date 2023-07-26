@@ -12,9 +12,7 @@ export const FooterNav = () => {
       <div className="footer-container">
         <div className="footer-row">
           <div className="footer-col">
-            <h4 style={cinzel.style} >
-              company
-            </h4>
+            <h4 style={cinzel.style}>company</h4>
             <ul>
               <li>
                 <Link href="#">about us</Link>
@@ -86,8 +84,6 @@ export const FooterNav = () => {
           </div>
         </div>
       </div>
-      <script src="assets/js/navMenu.js"></script>
-      <script src="assets/js/productCart.js"></script>
     </footer>
   );
 };

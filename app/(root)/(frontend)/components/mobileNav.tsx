@@ -15,7 +15,7 @@ export const MobileNav = () => {
           setNavOpen(true);
         }}
       >
-        <HiBars3 className="my-4" />
+        <HiBars3 className="my-4 w-8 h-8 " />
       </button>
       <div className="mobile-menu mobile-menu__side-menu">
         <div
@@ -23,7 +23,7 @@ export const MobileNav = () => {
           className={isNavOpen ? "sidenav opensidenav" : "sidenav closesidenav"}
         >
           <button
-            className="closebtn nav-nav-link_link"
+            className="closebtn nav-nav-link_link w-12 h-12 py-2 "
             onClick={() => {
               setNavOpen(false);
             }}

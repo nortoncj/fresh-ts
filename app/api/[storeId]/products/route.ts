@@ -1,8 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-
-import prismadb from '@/lib/prismadb';
-import getCurrentUser from '@/app/actions/getCurrentUser';
+import prismadb from "@/lib/prismadb";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 export async function POST(
   req: Request,
@@ -10,11 +9,21 @@ export async function POST(
 ) {
   try {
     const user = await getCurrentUser();
-    const userId = user?.id
+    const userId = user?.id;
 
     const body = await req.json();
 
-    const { name, price, categoryId, colorId, sizeId, images, isFeatured, isArchived } = body;
+    const {
+      name,
+      price,
+      categoryId,
+      colorId,
+      sizeId,
+      images,
+      isFeatured,
+      customizable,
+      isArchived,
+    } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
@@ -51,8 +60,8 @@ export async function POST(
     const storeByUserId = await prismadb.store.findFirst({
       where: {
         id: params.storeId,
-        userId
-      }
+        userId,
+      },
     });
 
     if (!storeByUserId) {
@@ -65,37 +74,37 @@ export async function POST(
         price,
         isFeatured,
         isArchived,
+        customizable,
         categoryId,
         colorId,
         sizeId,
         storeId: params.storeId,
         images: {
           createMany: {
-            data: [
-              ...images.map((image: { url: string }) => image),
-            ],
+            data: [...images.map((image: { url: string }) => image)],
           },
         },
       },
     });
-  
+
     return NextResponse.json(product);
   } catch (error) {
-    console.log('[PRODUCTS_POST]', error);
+    console.log("[PRODUCTS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
-};
+}
 
 export async function GET(
   req: Request,
-  { params }: { params: { storeId: string } },
+  { params }: { params: { storeId: string } }
 ) {
   try {
-    const { searchParams } = new URL(req.url)
-    const categoryId = searchParams.get('categoryId') || undefined;
-    const colorId = searchParams.get('colorId') || undefined;
-    const sizeId = searchParams.get('sizeId') || undefined;
-    const isFeatured = searchParams.get('isFeatured');
+    const { searchParams } = new URL(req.url);
+    const categoryId = searchParams.get("categoryId") || undefined;
+    const colorId = searchParams.get("colorId") || undefined;
+    const sizeId = searchParams.get("sizeId") || undefined;
+    const isFeatured = searchParams.get("isFeatured");
+    const customizable = searchParams.get("customizable");
 
     if (!params.storeId) {
       return new NextResponse("Store id is required", { status: 400 });
@@ -109,6 +118,7 @@ export async function GET(
         sizeId,
         isFeatured: isFeatured ? true : undefined,
         isArchived: false,
+        customizable: customizable ? true : undefined,
       },
       include: {
         images: true,
@@ -117,13 +127,13 @@ export async function GET(
         size: true,
       },
       orderBy: {
-        createdAt: 'desc',
-      }
+        createdAt: "desc",
+      },
     });
-  
+
     return NextResponse.json(products);
   } catch (error) {
-    console.log('[PRODUCTS_GET]', error);
+    console.log("[PRODUCTS_GET]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
-};
+}
