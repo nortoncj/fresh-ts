@@ -1,0 +1,207 @@
+:root {
+    --indigo: #2b192e;
+    --cream:#f5e8da;
+    --camel:#c19a6b;
+    --rome:#65272c;
+    --primary-font:'Fauna One', serif;
+    --title-font:'Cinzel', serif;
+}
+html, body {
+    font-family: var(--primary-font);
+}
+
+
+  .collections-page h1{
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding: 1.3rem ;
+    font-family: var(--title-font);    
+}
+.collections-filter {
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: inset 0 -1px 0 var(--camel),
+    inset 0 1px 0 var(--camel);
+}
+.collections-filter__title, .collections-filter__item {
+    height: 80px;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 700;
+    box-shadow:inset -1px 0 var(--rome);    
+}
+.collections-filter__title {
+    font-weight: 500;   
+}
+.collections-filter__item:nth-last-child(1){
+    box-shadow: none;
+}
+  .collections-products-link {
+    text-decoration: none;
+  }
+.collections-products{
+    padding: 3rem 0;
+}
+
+.collections-products .container {
+    display: grid;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row: repeat(3, 500px);
+    
+}
+
+.collections-products__item{
+    overflow: hidden;
+}
+
+.collections-products__item-box {
+    height: 600px;
+    overflow: hidden;    
+    background: grey;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+.collections-products__item-heart  {
+    position: absolute;
+    right:0;
+    top:0;    
+    z-index: 3;
+}
+.collections-products__item-icon {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  .collections-products__slider{
+    height: 600px;
+    /* overflow: hidden; */
+    background: grey;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    transition: all .7s ease-in-out;
+  }
+  .collections-products__slide {
+    flex:none;
+    width: 100%; 
+}
+.collections-products__slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+   }
+  
+   .collections-products__left {
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.collections-products__right {
+    position: absolute;
+    top:0;
+    right:0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.collections-products__left-icon, .collections-products__right-icon{
+    background: #f5e8da;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    opacity: 0;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+  
+.collections-products__item-box:hover .collections-products__left-icon,
+.collections-products__item-box:hover .collections-products__right-icon {
+    opacity: 1;
+}
+.collections-products__item-box:hover .collections-products__slider {
+    transform:translate3d(-100%, 0% , 0);
+}
+  
+.collections-products__item-title{
+    padding: .7rem 0;
+    font-weight: 700;
+}
+.collections-products__item-price{
+    font-weight: 500;
+}
+
+ /* MOBILE  */
+ @media only screen and (max-width: 550px) {
+
+
+    .collections-filter__title, .collections-filter__item {
+        height: 80px;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        box-shadow:inset -1px 0 var(--rome);    
+    }
+
+    .collections-products__item-box{
+        height: 200px;
+        
+    }
+    .collections-products__slide-img, .collections-products__slide-model {
+        height: 200px;
+    }
+   .collections-products__right-icon
+    , .collections-products__left-icon {
+        background: rgb(245, 232, 218, 0.5);
+        height: 20px;
+        width: 20px;
+
+    }
+    
+    .icon-inner, .ionicon, svg {
+        height: 50%;
+        width: 50%;
+    }
+ }
+
+ @media only screen and (max-width: 300px) {
+    .collections-filter__title, .collections-filter__item {
+        height: 80px;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.5rem;
+        font-weight: 700;
+        box-shadow:inset -1px 0 var(--rome);    
+    }
+
+    .collections-products__item-box{
+        height: 100px;
+        
+    }
+    .collections-products__slide-img, .collections-products__slide-model {
+        height: 150px;
+    }
+}

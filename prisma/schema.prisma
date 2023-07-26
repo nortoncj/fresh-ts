@@ -79,8 +79,10 @@ model Product {
 
 model Order {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
   storeId     String    @db.ObjectId // Foreign Key to Store
   store       Store     @relation("StoreToOrder", fields: [storeId], references: [id])
+  branding   Boolean @default(true)
   email       String
   orderItems OrderItem[] // Relation to OrderItem model
   isPaid     Boolean   @default(false)

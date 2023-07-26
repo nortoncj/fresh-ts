@@ -1,0 +1,85 @@
+/* GLOOBALS */
+:root {
+  --indigo: #2b192e;
+  --cream: #f5e8da;
+  --camel: #c19a6b;
+  --rome: #65272c;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* MAIN HERO */
+
+.main_hero {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main_hero-text h1 {
+  color: var(--cream);
+  border: 1px solid var(--cream);
+  padding: 50px;
+  font-size: 30px;
+  font-weight: 800;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.main_hero-text {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(7px);
+  position: absolute;
+  left: 40%;
+  top: 50%;
+}
+
+.main_hero-image {
+  background: linear-gradient(
+      to bottom,
+      rgba(193, 154, 107, 0.5),
+      rgba(43, 25, 46, 0.5),
+      rgba(101, 39, 44, 0.5)
+    ),
+    url("/images/pexels-fauxels-3184339.jpg");
+  height: 100vh;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  .main_hero-text h1 {
+    font-size: 40px;
+    padding: 5px;
+    font-weight: 200;
+  }
+
+  .main_hero-text {
+    left: 20%;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .main_hero-text h1 {
+    font-size: 20px;
+    padding: 5px;
+    font-weight: 200;
+  }
+
+  .main_hero-text {
+    left: 20%;
+  }
+}

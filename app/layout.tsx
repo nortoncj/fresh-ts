@@ -7,7 +7,7 @@ import AuthContext from "./context/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cardicus | Portal",
+  title: "Cardicus ",
   description: "Business Cards",
   icons: {
     icon: "/images/icon_gld.png",

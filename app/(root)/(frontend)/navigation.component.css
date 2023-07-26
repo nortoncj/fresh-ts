@@ -1,0 +1,263 @@
+/* NAVMENU */
+
+:root {
+  --indigo: #2b192e;
+  --cream: #f5e8da;
+  --camel: #c19a6b;
+  --rome: #65272c;
+}
+
+.nav-menu {
+  text-align: right;
+  margin: 0 auto;
+  max-width: 1290;
+  padding: 5px 0px;
+  height: 60px;
+}
+
+.nav-item {
+  display: inline-flex;
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 5px;
+}
+.nav-item:nth-child(1) {
+  float: left;
+}
+.nav-item:nth-child(2) {
+  float: left;
+}
+.nav-item:nth-child(3) {
+  float: left;
+}
+.nav-item:nth-child(4) {
+  float: left;
+}
+
+.nav-link {
+  margin: 10px 10px;
+  padding-left: 5px;
+}
+.nav-link a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--indigo);
+}
+.nav-link:hover {
+  text-shadow: 2px 2px 5px var(--rome);
+}
+
+.nav_brand-logo {
+  font-weight: 200;
+  font-size: 30px;
+  color: var(--camel);
+  position: absolute;
+  left: 53%;
+  width: 300px;
+  margin-left: -150px;
+  letter-spacing: 8px;
+}
+
+.nav_brand-logo a {
+  text-decoration: none;
+  text-transform: uppercase;
+
+  color: var(--camel);
+}
+
+.nav-cart {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.cartAmount {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+  font-size: 12px;
+  background: transparent;
+  color: var(--rome);
+  padding: 2px;
+  border-radius: 5px;
+}
+
+/* ANNOUNCEMENT BAR */
+
+.top-nav__group {
+  width: 100%;
+}
+
+.top-nav {
+  width: 100%;
+}
+.announcement-bar {
+  text-align: center;
+  font-size: 14px;
+  color: var(--camel);
+  background-color: var(--cream);
+  border-bottom: var(--cream) solid 1px;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+}
+
+.countdown-menu_numbers {
+  display: flex;
+  justify-content: center;
+}
+
+.countdown-menu_message--desktop {
+  text-transform: uppercase;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.country-selector {
+  display: flex;
+  font-size: 12px;
+  line-height: 24px;
+  margin-left: 2.4%;
+}
+.countdown-menu {
+  margin: 0 auto;
+  text-align: center;
+}
+.mobile-menu-toggle {
+  position: absolute;
+  float: right;
+  color: var(--camel);
+  line-height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  padding-left: 20px;
+  display: none;
+  z-index: 5;
+  border: none;
+  background: transparent;
+}
+
+/* TABLET */
+
+@media only screen and (max-width: 900px) {
+  .nav-link,
+  .nav-item {
+    font-size: 15px;
+  }
+  .nav_brand-logo {
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 4px;
+
+    top: 5%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+/* MOBILE  */
+@media only screen and (max-width: 450px) {
+  .nav-main {
+    display: none;
+  }
+  .nav_brand-logo {
+    font-size: 20px;
+    letter-spacing: 4px;
+    left: 50%;
+    align-items: center;
+    top: 6%;
+  }
+  .mobile-menu-toggle {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (min-width: 450px) and (max-height: 700px) {
+  .nav_brand-logo {
+    top: 15% !important;
+  }
+}
+/* The side navigation menu */
+.closesidenav {
+  width: 0; /* 0 width - change this with JavaScript */
+}
+.sidenav {
+  height: 100%; /* 100% Full-height */
+
+  position: fixed; /* Stay in place */
+  z-index: 30; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  /* background: linear-gradient(45deg, rgba(43,25,46,1) 0%, rgba(101,39,44,1) 100%); Black */
+  background-color: var(--cream);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s ease-in-out; /* 0.5 second transition effect to slide in the sidenav */
+}
+.openside nav {
+  width: 100%;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--camel);
+  display: block;
+  transition: 0.3s ease-in-out;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: var(--rome);
+  text-shadow: 2px 2px 5px var(--rome);
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background: transparent;
+  border: none;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left 0.5s ease-in-out;
+  padding: 20px;
+}
+
+.mobile-brand__logo {
+  font-size: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  cursor: pointer;
+}
+
+.mobile-brand__logo a:hover {
+  color: var(--camel);
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+
+  .title-container {
+    margin: 30px;
+  }
+}
+
+.nav-nav-link_link {
+  text-decoration: none;
+  color: #65272c;
+}

@@ -3,6 +3,13 @@ import UserNavbar from "@/components/usernav/userNavbar";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cardicus | Portal",
+  description: "Business Cards",
+
+}
 
 export default async function UsersLayout({
   children,

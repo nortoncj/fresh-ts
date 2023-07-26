@@ -1,0 +1,117 @@
+:root {
+  --indigo: #2b192e;
+  --cream: #f5e8da;
+  --camel: #c19a6b;
+  --rome: #65272c;
+  --primary-font: "Fauna One", serif;
+  --title-font: "Cinzel", serif;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Footer */
+body {
+  line-height: 1.5;
+  font-family: var(--primary-font);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.footer-container {
+  max-width: 1170px;
+  margin: auto;
+}
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+ul {
+  list-style: none;
+}
+.footer {
+  background-color: var(--cream);
+  padding: 70px 0;
+}
+.footer-col {
+  width: 25%;
+  padding: 0 15px;
+}
+.footer-col h4 {
+  font-size: 18px;
+  color: var(--camel);
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+  font-family: var(--title-font);
+}
+.footer-col h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: var(--rome);
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: var(--camel);
+  text-decoration: none;
+  font-weight: 300;
+  color: var(--camel);
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: var(--camel);
+  padding-left: 8px;
+}
+.footer-col .social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: var(--camel);
+  margin: 0 10px 10px 0;
+  border-radius: 50%;
+  color: var(--cream);
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover {
+  color: var(--cream);
+  background-color: rgb(193, 154, 107, 0.5);
+}
+
+/*responsive*/
+@media (max-width: 767px) {
+  .footer-col {
+    width: 50%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  h4 {
+    margin-top: 30px;
+  }
+}
+@media (max-width: 574px) {
+  .footer-col {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+@media only screen and (orientation: landscape) {
+  .footer-col {
+    margin-top: 30px;
+    
+  }
+}
