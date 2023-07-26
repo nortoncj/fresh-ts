@@ -2,6 +2,8 @@ import { Fauna_One } from "next/font/google";
 import "./mainpage.css";
 const faunaOne = Fauna_One({ subsets: ["latin"], weight: "400" });
 
+
+
 const Home = () => {
   return (
     <section className="main_hero">

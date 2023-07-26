@@ -9,7 +9,7 @@ export const Filter = () => {
                 <div className="collections-filter__item" style={cinzel.style}>Sales</div>
                 <div className="collections-filter__item" style={cinzel.style}>Categories</div>
                 <div className="collections-filter__item" style={cinzel.style}>Colors</div>
-                <div className="collections-filter__item" style={cinzel.style}>Sizes</div>
+                <div className="collections-filter__item" style={cinzel.style}>Custom</div>
             </section>
     )
 }

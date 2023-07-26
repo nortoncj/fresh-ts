@@ -8,8 +8,9 @@ import "./cart.component.css";
 import { IoBagOutline, IoCloseOutline, IoSearch } from "react-icons/io5";
 import { Cinzel } from "next/font/google";
 import AnnouncementBar from "./components/announcmentBar";
-import MobileNav  from "./components/mobileNav";
+import MobileNav from "./components/mobileNav";
 import FooterNav from "./components/footerNav";
+import { usePathname } from "next/navigation";
 
 const cinzel = Cinzel({ subsets: ["latin"] });
 
@@ -18,24 +19,23 @@ interface FrontNavProps {
 }
 
 const Navigation: React.FC<FrontNavProps> = ({ children }) => {
-  
   const [isCartOpen, setCartOpen] = useState(false);
 
   return (
     <>
-    <section className="top-nav">
+      <section className="top-nav">
         <AnnouncementBar />
         <MobileNav />
         <nav>
           <ul className="nav-menu">
-            <li >
-            <Link
-              className="nav-item nav-link nav-main nav-nav-link_link"
-              href="/"
-              style={cinzel.style}
-            >
-              HOME
-            </Link>
+            <li>
+              <Link
+                className="nav-item nav-link nav-main nav-nav-link_link"
+                href="/"
+                style={cinzel.style}
+              >
+                HOME
+              </Link>
             </li>
             <li className="nav-item nav-link nav-main">
               <Link
@@ -58,10 +58,9 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
               className="nav-item nav-link nav-main nav-nav-link_link"
               style={cinzel.style}
             >
-              
-                NEWS
-              </Link>
-            
+              NEWS
+            </Link>
+
             <li className="nav_brand-logo nav-item">
               <Link className="nav-nav-link_link" href="/" style={cinzel.style}>
                 BRAND NAME
@@ -78,10 +77,10 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
             </li>
             <li className="nav-item nav-link nav-login nav-search">
               <Link className="nav-nav-link_link" href="/login">
-               <IoSearch /> 
+                <IoSearch />
               </Link>
             </li>
-            
+
             <div className="nav-item nav-cart nav-link nav-login nav-search">
               <button
                 className="nav-cart"
@@ -96,8 +95,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
                 </div>
               </button>
             </div>
-            </ul>
-          
+          </ul>
         </nav>
       </section>
       {children}
@@ -156,7 +154,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
           </div>
         </div>
       </div>
-      <FooterNav/>
+      <FooterNav />
     </>
   );
 };
