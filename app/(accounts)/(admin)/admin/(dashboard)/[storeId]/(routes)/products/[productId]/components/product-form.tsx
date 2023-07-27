@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/select";
 import ImageUpload from "@/components/ui/image-upload";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -40,6 +41,7 @@ const formSchema = z.object({
   price: z.coerce.string().min(1),
   categoryId: z.string().min(1),
   colorId: z.string().min(1),
+  productInfo: z.string().min(1),
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   customizable: z.boolean().default(false).optional(),
@@ -57,6 +59,7 @@ interface ProductFormProps {
   categories: Category[];
   colors: Color[];
   sizes: Size[];
+  productInfo: String;
 }
 
 export const ProductForm: React.FC<ProductFormProps> = ({
@@ -64,6 +67,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   categories,
   sizes,
   colors,
+  productInfo,
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -87,6 +91,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         price: "0",
         categoryId: "",
         colorId: "",
+        productInfo: "",
         sizeId: "",
         isFeatured: false,
         isArchived: false,
@@ -218,6 +223,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
+              name="productInfo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={loading}
+                      placeholder="Product Description"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="categoryId"
               render={({ field }) => (
                 <FormItem>
@@ -312,6 +334,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="isFeatured"

@@ -3,12 +3,9 @@
     --cream:#f5e8da;
     --camel:#c19a6b;
     --rome:#65272c;
-    --primary-font:'Fauna One', serif;
-    --title-font:'Cinzel', serif;
+   
 }
-html, body {
-    font-family: var(--primary-font);
-}
+
 
 
   .collections-page h1{

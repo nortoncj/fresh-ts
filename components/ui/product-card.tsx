@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { MouseEventHandler } from "react";
+import { Expand } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import Currency  from "@/components/ui/currency";
 import IconButton  from "@/components/ui/icon-button";
 import usePreviewModal from "@/app/hooks/user-preview-modal";
-import useCart from "@/app/hooks/user-cart";
+import useCart from "@/app/hooks/use-cart";
 import { Product } from "@/types";
 import { Fauna_One } from "next/font/google";
 import { BsArrowsAngleExpand, BsBagPlus } from "react-icons/bs";
@@ -51,7 +52,7 @@ const ProductCard: React.FC<ProductCard> = ({
           className="aspect-square object-cover rounded-md"
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
-          <div className="flex gap-x-6 justify-between">
+          <div className="flex gap-x-6 justify-center">
             <IconButton 
               onClick={onPreview} 
               icon={<BsArrowsAngleExpand size={20} className="text-gray-600" />}

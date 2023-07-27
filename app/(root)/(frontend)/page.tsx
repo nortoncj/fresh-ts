@@ -19,7 +19,7 @@ const Home = async () => {
           <h1 style={faunaOne.style}>Heart of the People</h1>
         </div>
       </div>
-      <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8 pb-8">
         <ProductList title="Featured Products" items={products} />
       </div>
     </section>
