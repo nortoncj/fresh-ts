@@ -13,6 +13,7 @@ import AnnouncementBar from "./components/announcmentBar";
 import MobileNav from "./components/mobileNav";
 import FooterNav from "./components/footerNav";
 import { usePathname } from "next/navigation";
+import { ModalProvider } from "@/providers/modal-provider";
 
 const cinzel = Cinzel({ subsets: ["latin"] });
 
@@ -25,134 +26,142 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
 
   return (
     <>
-    <div className="">
-      <section className="top-nav">
-        <AnnouncementBar />
-        <MobileNav />
-        <nav>
-          <ul className="nav-menu">
-            <li>
+      <div className="">
+        <section className="top-nav">
+          <AnnouncementBar />
+          <MobileNav />
+          <ModalProvider />
+          <nav>
+            <ul className="nav-menu">
+              <li>
+                <Link
+                  className="nav-item nav-link nav-main nav-nav-link_link"
+                  href="/"
+                  style={cinzel.style}
+                >
+                  HOME
+                </Link>
+              </li>
+              <li className="nav-item nav-link nav-main">
+                <Link
+                  className="nav-nav-link_link"
+                  href="/shop"
+                  style={cinzel.style}
+                >
+                  SHOP
+                </Link>
+              </li>
               <Link
+                href="/about"
+                className="nav-item nav-link nav-main"
+                style={cinzel.style}
+              >
+                ABOUT
+              </Link>
+              <Link
+                href="/blog"
                 className="nav-item nav-link nav-main nav-nav-link_link"
-                href="/"
                 style={cinzel.style}
               >
-                HOME
+                NEWS
               </Link>
-            </li>
-            <li className="nav-item nav-link nav-main">
-              <Link
-                className="nav-nav-link_link"
-                href="/shop"
-                style={cinzel.style}
-              >
-                SHOP
-              </Link>
-            </li>
-            <Link
-              href="/about"
-              className="nav-item nav-link nav-main"
-              style={cinzel.style}
-            >
-              ABOUT
-            </Link>
-            <Link
-              href="/blog"
-              className="nav-item nav-link nav-main nav-nav-link_link"
-              style={cinzel.style}
-            >
-              NEWS
-            </Link>
 
-            <li className="nav_brand-logo nav-item">
-              <Link className="nav-nav-link_link" href="/" style={cinzel.style}>
-                BRAND NAME
-              </Link>
-            </li>
-            <li className="nav-item nav-link nav-login nav-main">
-              <Link
-                className="nav-nav-link_link"
-                href="/login"
-                style={cinzel.style}
-              >
-                LOGIN
-              </Link>
-            </li>
-            <li className="nav-item nav-link nav-login  nav-search">
-              <Link className="nav-nav-link_link" href="/login">
-                <IoSearch className="w-6" />
-              </Link>
-            </li>
+              <li className="nav_brand-logo nav-item">
+                <Link
+                  className="nav-nav-link_link"
+                  href="/"
+                  style={cinzel.style}
+                >
+                  BRAND NAME
+                </Link>
+              </li>
+              <li className="nav-item nav-link nav-login nav-main">
+                <Link
+                  className="nav-nav-link_link"
+                  href="/login"
+                  style={cinzel.style}
+                >
+                  LOGIN
+                </Link>
+              </li>
+              <li className="nav-item nav-link nav-login  nav-search">
+                <Link className="nav-nav-link_link" href="/login">
+                  <IoSearch className="w-6" />
+                </Link>
+              </li>
 
-            <div className="nav-item nav-cart nav-link nav-login nav-search">
+              <div className="nav-item nav-cart nav-link nav-login nav-search">
+                <button
+                  className="nav-cart"
+                  onClick={() => {
+                    setCartOpen(true);
+                  }}
+                  id="open_cart_btn"
+                >
+                  <IoBagOutline className="h-4 w-4" />
+                  <div id="cartAmount" className="cartAmount">
+                    0
+                  </div>
+                </button>
+              </div>
+            </ul>
+          </nav>
+        </section>
+        {children}
+        <div
+          id="sidecart"
+          className={isCartOpen ? "sidecart open" : "sidecart "}
+        >
+          <div className="cart_content">
+            <div className="cart_header">
+              <IoBagOutline className="w-6 h-6" />
+              <div className="header_title">
+                <h2>Your Cart</h2>
+                <small id="'items_num">4</small>
+              </div>
               <button
-                className="nav-cart"
+                id="close_btn"
                 onClick={() => {
-                  setCartOpen(true);
+                  setCartOpen(false);
                 }}
-                id="open_cart_btn"
+                className="close_btn w-12 h-12"
               >
-                <IoBagOutline className="h-4 w-4" />
-                <div id="cartAmount" className="cartAmount">
-                  0
-                </div>
+                <IoCloseOutline />
               </button>
             </div>
-          </ul>
-        </nav>
-      </section>
-      {children}
-      <div id="sidecart" className={isCartOpen ? "sidecart open" : "sidecart "}>
-        <div className="cart_content">
-          <div className="cart_header">
-            <IoBagOutline className="w-6 h-6" />
-            <div className="header_title">
-              <h2>Your Cart</h2>
-              <small id="'items_num">4</small>
-            </div>
-            <button
-              id="close_btn"
-              onClick={() => {
-                setCartOpen(false);
-              }}
-              className="close_btn w-12 h-12"
-            >
-              <IoCloseOutline />
-            </button>
-          </div>
 
-          <div className="cart_items">
-            <div className="cart_item">
-              <div className="remove_item">
-                <IoCloseOutline />
-              </div>
-              <div className="item_img">
-                <img src="/images/default.png" alt="" />
-              </div>
-              <div className="item_details">
-                <p>Gladius Card</p>
-                <strong>$4.99</strong>
-                <div className="qty">
-                  <span>-</span>
-                  <strong>1</strong>
-                  <span>+</span>
+            <div className="cart_items">
+              <div className="cart_item">
+                <div className="remove_item">
+                  <IoCloseOutline />
+                </div>
+                <div className="item_img">
+                  <img src="/images/default.png" alt="" />
+                </div>
+                <div className="item_details">
+                  <p>Gladius Card</p>
+                  <strong>$4.99</strong>
+                  <div className="qty">
+                    <span>-</span>
+                    <strong>1</strong>
+                    <span>+</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="cart_actions">
-            <div className="subtotal">
-              <p>SUBTOTAL:</p>
-              <p>
-                $<span id="subtotal_price">22.35</span>
-              </p>
+            <div className="cart_actions">
+              <div className="subtotal">
+                <p>SUBTOTAL:</p>
+                <p>
+                  $<span id="subtotal_price">22.35</span>
+                </p>
+              </div>
+              <button>View Cart</button>
+              <button>Checkout</button>
             </div>
-            <button>View Cart</button>
-            <button>Checkout</button>
           </div>
         </div>
-      </div>
       </div>
       <FooterNav />
     </>
