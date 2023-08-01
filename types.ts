@@ -8,6 +8,7 @@ export interface Product {
     productInfo: string;
     size: Size;
     color: Color;
+    unit: number;
     images: Image[]
   };
   

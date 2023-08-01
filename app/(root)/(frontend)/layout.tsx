@@ -1,4 +1,4 @@
-"use client";
+
 import "./navigation.component.css";
 import Link from "next/link";
 
@@ -12,17 +12,24 @@ import { Cinzel } from "next/font/google";
 import AnnouncementBar from "./components/announcmentBar";
 import MobileNav from "./components/mobileNav";
 import FooterNav from "./components/footerNav";
-import { usePathname } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { ModalProvider } from "@/providers/modal-provider";
+import useCart from "@/app/hooks/use-cart";
+import { Product } from "@/types";
+import Currency from "@/components/ui/currency";
+import IconButton from "@/components/ui/icon-button";
+import {NavEnd} from "./components/navEnd";
 
 const cinzel = Cinzel({ subsets: ["latin"] });
 
 interface FrontNavProps {
   children: React.ReactNode;
+  cartItem: Product;
 }
 
 const Navigation: React.FC<FrontNavProps> = ({ children }) => {
-  const [isCartOpen, setCartOpen] = useState(false);
+  
+
 
   return (
     <>
@@ -84,84 +91,12 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
                   LOGIN
                 </Link>
               </li>
-              <li className="nav-item nav-link nav-login  nav-search">
-                <Link className="nav-nav-link_link" href="/login">
-                  <IoSearch className="w-6" />
-                </Link>
-              </li>
-
-              <div className="nav-item nav-cart nav-link nav-login nav-search">
-                <button
-                  className="nav-cart"
-                  onClick={() => {
-                    setCartOpen(true);
-                  }}
-                  id="open_cart_btn"
-                >
-                  <IoBagOutline className="h-4 w-4" />
-                  <div id="cartAmount" className="cartAmount">
-                    0
-                  </div>
-                </button>
-              </div>
+              <NavEnd />
+              
             </ul>
           </nav>
         </section>
         {children}
-        <div
-          id="sidecart"
-          className={isCartOpen ? "sidecart open" : "sidecart "}
-        >
-          <div className="cart_content">
-            <div className="cart_header">
-              <IoBagOutline className="w-6 h-6" />
-              <div className="header_title">
-                <h2>Your Cart</h2>
-                <small id="'items_num">4</small>
-              </div>
-              <button
-                id="close_btn"
-                onClick={() => {
-                  setCartOpen(false);
-                }}
-                className="close_btn w-12 h-12"
-              >
-                <IoCloseOutline />
-              </button>
-            </div>
-
-            <div className="cart_items">
-              <div className="cart_item">
-                <div className="remove_item">
-                  <IoCloseOutline />
-                </div>
-                <div className="item_img">
-                  <img src="/images/default.png" alt="" />
-                </div>
-                <div className="item_details">
-                  <p>Gladius Card</p>
-                  <strong>$4.99</strong>
-                  <div className="qty">
-                    <span>-</span>
-                    <strong>1</strong>
-                    <span>+</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="cart_actions">
-              <div className="subtotal">
-                <p>SUBTOTAL:</p>
-                <p>
-                  $<span id="subtotal_price">22.35</span>
-                </p>
-              </div>
-              <button>View Cart</button>
-              <button>Checkout</button>
-            </div>
-          </div>
-        </div>
       </div>
       <FooterNav />
     </>

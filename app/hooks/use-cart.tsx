@@ -16,6 +16,7 @@ const useCart = create(
   persist<CartStore>(
     (set, get) => ({
       items: [],
+
       addItem: (data: Product) => {
         const currentItems = get().items;
         const existingItem = currentItems.find((item) => item.id === data.id);
