@@ -1,4 +1,3 @@
-
 import "./navigation.component.css";
 import Link from "next/link";
 
@@ -18,7 +17,8 @@ import useCart from "@/app/hooks/use-cart";
 import { Product } from "@/types";
 import Currency from "@/components/ui/currency";
 import IconButton from "@/components/ui/icon-button";
-import {NavEnd} from "./components/navEnd";
+import { NavEnd } from "./components/navEnd";
+import getSession from "@/app/actions/getSession";
 
 const cinzel = Cinzel({ subsets: ["latin"] });
 
@@ -29,8 +29,6 @@ interface FrontNavProps {
 
 const Navigation: React.FC<FrontNavProps> = ({ children }) => {
   
-
-
   return (
     <>
       <div className="">
@@ -82,17 +80,8 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
                   BRAND NAME
                 </Link>
               </li>
-              <li className="nav-item nav-link nav-login nav-main">
-                <Link
-                  className="nav-nav-link_link"
-                  href="/login"
-                  style={cinzel.style}
-                >
-                  LOGIN
-                </Link>
-              </li>
+
               <NavEnd />
-              
             </ul>
           </nav>
         </section>

@@ -4,7 +4,7 @@ import React, { useTransition } from "react";
 import { CartItemWithProduct } from "@/app/libs/cart";
 import Currency from "@/components/ui/currency";
 import IconButton from "@/components/ui/icon-button";
-import { X } from "lucide-react";
+
 import Image from "next/image";
 import { ClipLoader } from "react-spinners";
 
@@ -38,9 +38,7 @@ export default function CartEntry({
         />
       </div>
       <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-        <div className="absolute z-10 right-0 top-0">
-          <IconButton onClick={() => {}} icon={<X size={15} />} />
-        </div>
+        <div className="absolute z-10 right-0 top-0">{/*Remove Button*/}</div>
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div className="flex justify-between">
             <p className=" text-lg font-semibold text-black">{product.name}</p>
@@ -53,7 +51,7 @@ export default function CartEntry({
                 });
               }}
             >
-                <option value={0}>0 (Remove)</option>
+              <option value={0}>0 (Remove)</option>
               {quantityOptions}
             </select>
           </div>

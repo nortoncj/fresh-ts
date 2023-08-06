@@ -10,13 +10,9 @@ import { setProductQuantity } from "./cartActions";
 
 interface ShoppingCartButtonProps {
   cart: ShoppingCart | null;
-  
 }
 
-export default function CartButton({
- 
-  cart
-   }: ShoppingCartButtonProps) {
+export default function CartButton({ cart }: ShoppingCartButtonProps) {
   const [isCartOpen, setCartOpen] = useState(false);
   const router = useRouter();
   return (
@@ -62,16 +58,23 @@ export default function CartButton({
               <p className="text-amber-500">No items added to cart.</p>
             )}
             {cart?.items.map((cartItem) => (
-              <CartEntry key={cartItem.id}  cartItem={cartItem} setProductQuantity={setProductQuantity}/>
+              <CartEntry
+                key={cartItem.id}
+                cartItem={cartItem}
+                setProductQuantity={setProductQuantity}
+              />
             ))}
-            
           </div>
 
           <div className="cart_actions">
             <div className="subtotal">
               <p>SUBTOTAL:</p>
               <p>
-                $<span id="subtotal_price">{cart?.subtotal}</span>
+                
+                <span id="subtotal_price">
+                 
+                  <Currency value={cart?.subtotal} />
+                </span>
               </p>
             </div>
             <button onClick={() => router.push("/cart")}>View Cart</button>

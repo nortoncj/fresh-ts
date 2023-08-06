@@ -6,18 +6,20 @@ import AzureADProvider from "next-auth/providers/azure-ad";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import prisma from "../../../libs/prismadb";
+import { env } from "@/lib/env";
+import { mergeAnonymousCartIntoUserCart } from "@/app/libs/cart";
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     AzureADProvider({
-      clientId: process.env.AZURE_AD_CLIENT_ID as string,
-      clientSecret: process.env.AZURE_AD_CLIENT_SECRET as string,
-      tenantId: process.env.AZURE_AD_TENANT_ID as string,
+      clientId: env.AZURE_AD_CLIENT_ID as string,
+      clientSecret: env.AZURE_AD_CLIENT_SECRET as string,
+      tenantId: env.AZURE_AD_TENANT_ID as string,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID as string,
+      clientSecret: env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
       name: "credentials",
@@ -54,11 +56,17 @@ export const authOptions: AuthOptions = {
     }),
   ],
 
+  events: {
+    async signIn({ user }) {
+      await mergeAnonymousCartIntoUserCart(user.id);
+    },
+  },
+
   debug: process.env.NODE_ENV !== "development",
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);

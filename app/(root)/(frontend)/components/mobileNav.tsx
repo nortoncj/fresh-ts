@@ -4,7 +4,9 @@ import { HiBars3 } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
 import Link from "next/link";
 import { Cinzel } from "next/font/google";
+import { Session } from "next-auth";
 const cinzel = Cinzel({ subsets: ["latin"] });
+
 export const MobileNav = () => {
   const [isNavOpen, setNavOpen] = useState(false);
   return (
