@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Popover,
@@ -20,16 +21,23 @@ export default async function SearchBar() {
   }
   return (
     <li className="nav-item nav-link nav-login  nav-search">
-      <form action={searchProducts}>
-        <Popover>
-          <PopoverTrigger>
-            <IoSearch className="w-6" />
-          </PopoverTrigger>
-          <PopoverContent>
-            <Input name="searchQuery" placeholder="Search" />
-          </PopoverContent>
-        </Popover>
-      </form>
+      <Popover>
+        <PopoverTrigger>
+          <IoSearch className="w-6" />
+        </PopoverTrigger>
+        <PopoverContent>
+          <form action={searchProducts}>
+            <div className="flex gap-2 form-control">
+              <Input
+                className="border-none active:border-none"
+                name="searchQuery"
+                placeholder="Search"
+              />
+              <Button type="submit">Search</Button>
+            </div>
+          </form>
+        </PopoverContent>
+      </Popover>
     </li>
   );
 }
