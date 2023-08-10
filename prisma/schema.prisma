@@ -83,10 +83,10 @@ model Product {
 
 model Order {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
+  name       String      @default("")
   storeId    String      @db.ObjectId // Foreign Key to Store
   store      Store       @relation("StoreToOrder", fields: [storeId], references: [id])
-  email      String
+  email      String      @default("")
   orderItems OrderItem[] // Relation to OrderItem model
   isPaid     Boolean     @default(false)
   phone      String      @default("")
@@ -177,7 +177,6 @@ model OrderItem {
   order     Order   @relation(fields: [orderId], references: [id])
   productId String  @db.ObjectId // Foreign Key to Product
   image     String?
-  quantity  Int
   branding  Boolean @default(true)
   product   Product @relation(fields: [productId], references: [id])
 

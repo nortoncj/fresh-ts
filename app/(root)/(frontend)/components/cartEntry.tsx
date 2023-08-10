@@ -33,7 +33,7 @@ export default function CartEntry({
       <div className="absolute z-10 right-0 top-0"></div>
       
       <div className=" item_img">
-        <img src={product.images[0].url} alt={product.name} />
+        <Image src={product.images[0].url} alt={product.name} width={500} height={500} />
       </div>
       <div className="item_details">
         <p>{product.name}</p>

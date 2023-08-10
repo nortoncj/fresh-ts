@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { CartItemWithProduct, ShoppingCart } from "@/app/libs/cart";
 import CartEntry from "./cartEntry";
 import { setProductQuantity } from "./cartActions";
+import axios from "axios";
 
 interface ShoppingCartButtonProps {
   cart: ShoppingCart | null;
@@ -15,6 +16,17 @@ interface ShoppingCartButtonProps {
 export default function CartButton({ cart }: ShoppingCartButtonProps) {
   const [isCartOpen, setCartOpen] = useState(false);
   const router = useRouter();
+
+  const onCheckout = async () => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+      {
+        productIds: cart?.items?.map((item) => [item.productId, item.cartId]),
+      }
+    );
+
+    window.location = response.data.url;
+  };
   return (
     <>
       <div className="nav-item nav-cart nav-link nav-login nav-search">
@@ -69,16 +81,16 @@ export default function CartButton({ cart }: ShoppingCartButtonProps) {
           <div className="cart_actions">
             <div className="subtotal">
               <p>SUBTOTAL:</p>
-              <p>
-                
+              <div>
                 <span id="subtotal_price">
-                 
                   <Currency value={cart?.subtotal} />
                 </span>
-              </p>
+              </div>
             </div>
             <button onClick={() => router.push("/cart")}>View Cart</button>
-            <button>Continue</button>
+            <button onClick={onCheckout} disabled={cart?.size === 0}>
+              Continue
+            </button>
           </div>
         </div>
       </div>
