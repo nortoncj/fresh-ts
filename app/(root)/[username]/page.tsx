@@ -1,11 +1,10 @@
 import React, { FC } from "react";
-import getUserDetails from "@/app/actions/getuserDetails";
+import getUserDetails from "@/app/actions/getUserDetails";
 import Link from "next/link";
 import { HiMail, HiPhone } from "react-icons/hi";
-import { HiChatBubbleOvalLeft } from "react-icons/hi2";
-import { FaMobile } from "react-icons/fa";
+
 import { AddToContact } from "./components/addToContact";
-import "./freemium.css";
+import "./components/freemium.css";
 import Image from "next/image";
 interface ProfilePageProps {
   params: { username: string };
