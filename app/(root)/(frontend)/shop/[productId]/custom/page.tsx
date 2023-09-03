@@ -27,22 +27,17 @@ import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 import axios from "axios";
 import AddToCartButton from "../components/addToCartButton";
 import Dropzone from "./components/dropzone";
-
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CustomizeButton from "./components/uploadButton";
-import { incrementCustomProductQuantity } from "../actions";
+import { incrementCustomProductQuantity } from "./actions";
 import { useRouter } from "next/navigation";
-
 // FORM FUNCTIONS
-
 const formSchema = z.object({
   customImage: z.string().min(2),
   branded: z.boolean().default(true),
 });
-
 type CustomFormValues = z.infer<typeof formSchema>;
-
 interface CustomProps {
   customImage: string;
   branded: boolean;
@@ -56,7 +51,6 @@ interface CustomProps {
     productId: string;
   };
 }
-
 const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
@@ -72,50 +66,40 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
   const form = useForm<CustomFormValues>({
     resolver: zodResolver(formSchema),
   });
-
   const handleOnSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-
     if (file) {
       const formData = new FormData();
       formData.append("image", file, newFileName);
-
       try {
         const config = {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         };
-
         await axios.post(
           "https://devcard.azurewebsites.net/api/UploadImage",
           formData,
           config
         );
-
         console.log("Upload Successful");
         console.log("customImage", URL.createObjectURL(file));
-
         router.push("/cart");
       } catch (error: any) {
         console.log("Upload failed", error.response.data);
       }
     }
-
     setState("sent");
   };
-
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0];
       setFile(selectedFile);
       setnewFileName(`${uuidv4()}_${selectedFile.name}`);
     }
-
     const target = e.target as HTMLInputElement & {
       files: FileList;
     };
-
     const file = target.files?.[0];
     //display selected
     setSelectedImage(URL.createObjectURL(file));
@@ -123,7 +107,6 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
     //set for upload
     setFile(file);
   };
-
   return (
     <div className=" ">
       <Form {...form}>
@@ -156,7 +139,6 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
                 </FormItem>
               )}
             />
-
             {selectedImage ? (
               <>
                 <div className="w-40 text-extrabold mx-auto cursor-pointer">
@@ -175,7 +157,6 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
               <></>
             )}
           </div>
-
           <div className=" flex mx-80 mb-2 justify-end ">
             <Button
               onClick={() => {
@@ -202,5 +183,4 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
     </div>
   );
 };
-
 export default CustomizeOrder;

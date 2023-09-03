@@ -1,14 +1,33 @@
-import React from "react";
+'use client'
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import { useSession } from "next-auth/react";
+import axios from "axios";
+import {subscription} from './subcriptions'
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
-
 const includedFeatures = [
   "Social Media Icons",
-  "Custom Branding",
-  "Different layouts",
-  "Analytics",
+  "Optional Pronouns",
+  "Different layouts (Coming Soon)",
+  "Analytics(Coming Soon)",
+  "Custom Branding (Coming Soon)",
 ];
-
 const Membership = () => {
+  const [loading, setLoading] =useState(false)
+
+  const onSubscribe = async () => { 
+    try {
+      setLoading(true);
+      const response = await axios.get(`/api/stripe`);
+      window.location.href = response.data.url
+    } catch (error) {
+      console.log(error, "STRIPE_CLIENT ERROR")
+    } finally {
+      setLoading(false);
+    }
+  }
+  
   return (
     <div className=" py-24  sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -23,11 +42,12 @@ const Membership = () => {
         <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-              Membership
+              {subscription[0].planType} Membership
             </h3>
             <p className="mt-6 text-base leading-7 text-gray-600">
               The same account but more features, enhance your experience today
-              with a pro account.
+              with a pro account. Join our growing legions and be among the first to enjoy our exclusive
+              features as they become available.
             </p>
             <div className="mt-10 flex items-center gap-x-4">
               <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-900">
@@ -62,12 +82,9 @@ const Membership = () => {
                     USD
                   </span>
                 </p>
-                <a
-                  href="#"
-                  className="mt-10 block w-full rounded-md bg-rose-900 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-amber-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Get access
-                </a>
+                <button onClick={onSubscribe} className="mt-10 block w-full rounded-md bg-rose-900 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-amber-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Get Access
+                </button>
                 <p className="mt-6 text-xs leading-5 text-gray-600">
                   Invoices and receipts available for easy company reimbursement
                 </p>
@@ -79,5 +96,4 @@ const Membership = () => {
     </div>
   );
 };
-
 export default Membership;

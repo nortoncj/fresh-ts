@@ -1,15 +1,12 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
-
 generator client {
   provider = "prisma-client-js"
 }
-
 model Store {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   name       String
@@ -23,7 +20,6 @@ model Store {
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 }
-
 model Billboard {
   id         String     @id @default(auto()) @map("_id") @db.ObjectId
   storeId    String     @db.ObjectId
@@ -33,10 +29,8 @@ model Billboard {
   categories Category[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
-
   @@index([storeId])
 }
-
 model Category {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   storeId     String    @db.ObjectId // Foreign Key to Store
@@ -47,11 +41,9 @@ model Category {
   products    Product[] @relation("CategoryToProduct")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-
   @@index([storeId])
   @@index([billboardId])
 }
-
 model Product {
   id           String      @id @default(auto()) @map("_id") @db.ObjectId
   storeId      String      @db.ObjectId // Foreign Key to Store
@@ -74,13 +66,11 @@ model Product {
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
   CartItem     CartItem[]
-
   @@index([storeId])
   @@index([categoryId])
   @@index([sizeId])
   @@index([colorId])
 }
-
 model Order {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   name       String      @default("")
@@ -93,43 +83,53 @@ model Order {
   address    String      @default("")
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
-
   @@index([storeId])
 }
-
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name           String?
-  username       String?   @unique @default(uuid())
-  email          String?   @unique
-  emailVerified  DateTime?
-  hashedPassword String?
-  image          String?
-  role           String    @default("Freemium")
-  phone          String?
-  title          String?
-  bio            String?
-  address        String?
-  proNouns       String?
-  link1          String?
-  link2          String?
-  fb             String?
-  tw             String?
-  ig             String?
-  li             String?
-  tt             String?
-  yt             String?
-  twt            String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  favoriteIds    String[]  @db.ObjectId
-  accounts       Account[]
-  sessions       Session[]
-  Cart           Cart[]
-
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  name             String?
+  lastName         String?
+  username         String?            @unique @default(uuid())
+  email            String?            @unique
+  emailVerified    DateTime?
+  hashedPassword   String?
+  image            String?
+  role             String             @default("Freemium")
+  phone            String?
+  title            String?
+  bio              String?
+  address          String?
+  proNouns         String?
+  link1            String?
+  linkText1        String?
+  link2            String?
+  linkText2        String?
+  fb               String?
+  tw               String?
+  ig               String?
+  li               String?
+  tt               String?
+  yt               String?
+  twt              String?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  favoriteIds      String[]           @db.ObjectId
+  accounts         Account[]
+  sessions         Session[]
+  Cart             Cart[]
+  UserSubscription UserSubscription[]
   @@map("users")
 }
-
+model UserSubscription {
+  id                     String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId                 String    @db.ObjectId
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("UserSubscription")
+}
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
@@ -143,33 +143,26 @@ model Account {
   scope             String?
   id_token          String? @db.String
   session_state     String?
-
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
-
 model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
   userId       String   @db.ObjectId
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@map("sessions")
 }
-
 model VerificationToken {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String   @unique
   expires    DateTime
-
   @@unique([identifier, token])
   @@map("verificationtokens")
 }
-
 // Intermediary for a many-to-many relationship
 model OrderItem {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -179,11 +172,9 @@ model OrderItem {
   image     String?
   branding  Boolean @default(true)
   product   Product @relation(fields: [productId], references: [id])
-
   @@index([orderId])
   @@index([productId])
 }
-
 model Size {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   storeId   String    @db.ObjectId // Foreign Key to Store
@@ -193,10 +184,8 @@ model Size {
   products  Product[] // Relation to Product model
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-
   @@index([storeId])
 }
-
 model Color {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   storeId   String    @db.ObjectId // Foreign Key to Store
@@ -206,10 +195,8 @@ model Color {
   products  Product[] // Relation to Product model
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-
   @@index([storeId])
 }
-
 model Image {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   productId String   @db.ObjectId // Foreign Key to Product
@@ -217,12 +204,9 @@ model Image {
   url       String // URL of the image
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   @@index([productId])
 }
-
 // CART MODELS
-
 model Cart {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
   items     CartItem[]
@@ -230,17 +214,16 @@ model Cart {
   user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-
   @@map("carts")
 }
-
 model CartItem {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  productId String  @db.ObjectId
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  quantity  Int
-  cartId    String  @db.ObjectId
-  cart      Cart    @relation(fields: [cartId], references: [id])
-
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  productId   String  @db.ObjectId
+  product     Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  customImage String? @default("")
+  branded     Boolean @default(true)
+  quantity    Int
+  cartId      String  @db.ObjectId
+  cart        Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
   @@map("cartitems")
 }

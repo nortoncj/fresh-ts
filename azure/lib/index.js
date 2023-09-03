@@ -1,7 +1,7 @@
+
 const {BlobServiceClient} = require('@azure/storage-blob');
 const multipart = require("parse-multipart");
 const AZURE_STORAGE_CONNECTION_STRING = process.env["AZURE_STORAGE_CONNECTION_STRING"];
-
 module.exports = async function (context, req) {
     context.log('HTTP function processed a request.');
     var bodyBuffer = Buffer.from(req.body);
@@ -9,7 +9,6 @@ module.exports = async function (context, req) {
     var boundary = multipart.getBoundary(req.headers['content-type']);
     // parse the body
     var parts = multipart.Parse(bodyBuffer, boundary);
-
     //Create the BlobService Client object which will be used to create the container client
     const blobServiceClient = await BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
     //Get a reference to a container

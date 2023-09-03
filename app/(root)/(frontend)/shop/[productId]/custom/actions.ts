@@ -1,16 +1,15 @@
 "use server";
-
 import { createCart, getCart } from "@/app/libs/cart";
 import prisma from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 
-
-
-export async function incrementCustomProductQuantity(productId: string, customImage: string, branded:boolean) {
+export async function incrementCustomProductQuantity(
+  productId: string,
+  customImage: string,
+  branded: boolean
+) {
   const cart = (await getCart()) ?? (await createCart());
-
   const articleInCart = cart.items.find((item) => item.productId === productId);
-
   if (articleInCart) {
     await prisma.cart.update({
       where: { id: cart.id },
@@ -18,8 +17,7 @@ export async function incrementCustomProductQuantity(productId: string, customIm
         items: {
           update: {
             where: { id: articleInCart.id },
-            data: { quantity: { increment: 1 },
-         },
+            data: { quantity: { increment: 1 } },
           },
         },
       },
@@ -33,12 +31,11 @@ export async function incrementCustomProductQuantity(productId: string, customIm
             productId,
             quantity: 1,
             customImage,
-            branded
+            branded,
           },
         },
       },
     });
   }
-
   revalidatePath("/shop/[productId]/custom");
 }

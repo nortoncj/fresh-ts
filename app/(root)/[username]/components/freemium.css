@@ -1,0 +1,239 @@
+html {
+    height: -webkit-fill-available;
+  }
+  body {
+    height: -webkit-fill-available;
+  }
+  .invert-text {
+    filter: invert(1);
+    mix-blend-mode: difference;
+  }
+  .info-text2 {
+    background: inherit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: invert(1) grayscale(1);
+    -webkit-filter: invert(1) grayscale(1);
+  }
+  .avatar-container {
+    background-color: linear-gradient(blue, pink);
+  }
+  /* MOBILE */
+  @media screen and (max-width: 700px) {
+    .name-text {
+      top: 14rem;
+      left: 2.5rem;
+      font-size: x-large;
+      text-decoration: wavy;
+      font-weight: 500;
+    }
+  }
+  /* TABLET */
+  @media screen and (min-width: 750px) {
+    .name-text {
+      top: 40rem;
+      font-size: xx-large;
+    }
+    .pronoun-text {
+      top: 40rem;
+      left: 33rem;
+    }
+  }
+  /* DESKTOP */
+  @media screen and (min-width: 1050px) {
+    .name-text {
+      top: 33rem;
+      font-size: xx-large;
+    }
+    .pronoun-text {
+      top: 33rem;
+      left: 27.5rem;
+      font-style: oblique;
+    }
+  }
+  .content .card .user {
+    width: 380px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px 0 rgba(0, 20, 20, 0.5);
+  }
+  .content .card .user-info {
+    width: 380px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px 0 rgba(0, 20, 20, 0.5);
+  }
+  .content .card .user .profile {
+    position: absolute;
+    bottom: 0px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 212, 255, 0) 10%,
+      rgba(0, 0, 0, 1) 60%
+    );
+    width: 380px;
+  }
+  .content .card .user .profile .profile-left {
+    
+    left:0;
+    color: #fff;
+    padding-left: 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    padding-bottom: 0px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 5px #444;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 212, 255, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+  .content .card .user .name {
+    color: #fff;
+    position: absolute;
+    z-index: 30;
+    padding-right: 7.2rem;
+    padding-left: 20px;
+    left: 0;
+    bottom: 23px;
+    font-size: 25px;
+    font-weight: 500;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 5px #444;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 212, 255, 0) 10%,
+      rgba(0, 0, 0, 1) 80%
+    );
+    
+  }
+  .content .card .user .title {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    padding-left: 20px;
+    bottom: 0px;
+    font-size: 20px;
+    font-weight: 400;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 5px #444;
+    border-radius: 10px;
+    background: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 212, 255, 0) 100%
+    );
+    width: 380px;
+  }
+  .content .card .user div {
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 5px #444;
+  }
+  .content .card .local {
+    display: flex;
+    align-items: center;
+    padding: 0 0 20px 0;
+  }
+  .content .card .local i {
+    margin: 5px 0;
+    color: #fff;
+  }
+  .content .card .local span {
+    color: #fff;
+    font-style: oblique;
+    left: 75px;
+    bottom: 20px;
+    position: absolute;
+    font-size: small;
+    padding: 0 10px;
+    text-shadow: 1px 1px 5px #444;
+  }
+  .content .card .links {
+    width: 380px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px 0 rgba(0, 20, 20, 0.5);
+  }
+  .links .link {
+    padding-left: 1rem;
+    margin: 0 0 1rem 0;
+    transition: ease-in-out 0.02s;
+  }
+  /* CSS */
+  .button {
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    text-decoration: none #d1d5db solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 10px 0 rgba(0, 20, 20, 0.5);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  .button:hover {
+    background-color: rgb(249, 250, 251);
+  }
+  .button:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  .button:focus-visible {
+    box-shadow: none;
+  }
+  .contact {
+    background: #65272c;
+    color: #faf9f6;
+  }
+  .contact:hover {
+    background: maroon;
+  }
+  .email {
+    background: skyblue;
+  }
+  .email:hover {
+    background: powderblue;
+  }
+  .phone {
+    background: turquoise;
+  }
+  .phone:hover {
+    background: aquamarine;
+  }
+  /* lock portrait mode */
+  @media screen and (min-width:320px) and (max-with: 767px) and (orientation: landscape) {
+    #lock {
+      -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+    }
+  }
+  
