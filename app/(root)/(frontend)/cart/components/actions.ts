@@ -18,10 +18,6 @@ export async function setProductQuantity(productId: string, quantity: number,par
 
   const articleInCart = cart.items.find((item) => item.productId === productId);
   
-      
-    
-  
-
   if (quantity === 0) {
     if (articleInCart) {
       await prisma.cart.update({

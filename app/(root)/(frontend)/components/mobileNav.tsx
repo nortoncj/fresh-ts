@@ -34,7 +34,7 @@ export const MobileNav = () => {
           </button>
           <div className="mobile-brand__logo">
             <Link className="nav-nav-link_link" href="/" style={cinzel.style}>
-              Brand Name
+              Cardicus
             </Link>
           </div>
           <Link className="nav-nav-link_link" href="/shop" style={cinzel.style}>
