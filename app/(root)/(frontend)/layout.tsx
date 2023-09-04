@@ -33,7 +33,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
     <>
       <div className="">
         <section className="top-nav">
-          <AnnouncementBar />
+          
           <MobileNav />
           <ModalProvider />
           <nav>
@@ -77,7 +77,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
                   href="/"
                   style={cinzel.style}
                 >
-                  BRAND NAME
+                  Cardicus
                 </Link>
               </li>
 

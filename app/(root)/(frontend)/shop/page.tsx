@@ -15,6 +15,9 @@ export const revalidate = 0;
 
 const Shop = async () => {
   const products = await prismadb.product.findMany({
+    where: {
+      isArchived: false,
+    },
     include: {
       images: true,
     },
@@ -31,7 +34,7 @@ const Shop = async () => {
         </section>
 
         <CategoryFilter data={categories} />
-          
+
         <section className="collections-products">
           <div className="container shop" id="shop">
             {products.map((item: any) => (

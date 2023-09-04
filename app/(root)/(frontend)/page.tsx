@@ -11,7 +11,7 @@ export const revalidate = 0;
 
 const Home = async () => {
   const billboard = await getBillboard("64c1688be4c7514a24451cb5");
-  const products = await getProducts({ customizable: true });
+  const products = await getProducts({ isFeatured: true });
   return (
     <section className="main_hero">
       <div className="main_hero-image">

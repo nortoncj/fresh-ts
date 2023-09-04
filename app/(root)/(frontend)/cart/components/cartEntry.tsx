@@ -7,19 +7,24 @@ import IconButton from "@/components/ui/icon-button";
 import { useEffect } from "react";
 import Image from "next/image";
 import { ClipLoader } from "react-spinners";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+
+
 
 interface CartEntryProps {
   cartItem: CartItemWithProduct;
-  setProductQuantity: (productId: string, quantity: number) => Promise<void>;
+  setProductQuantity: (productId: string, quantity: number,) => Promise<void>;
+  clearCart: () => Promise<void>;
 }
 
 export default function CartEntry({
   cartItem: { product, quantity },
   setProductQuantity,
+  clearCart,
 }: CartEntryProps) {
   const [isPending, startTransition] = useTransition();
+  const params = useParams();
   const searchParams = useSearchParams();
   const quantityOptions: JSX.Element[] = [];
 
@@ -33,12 +38,16 @@ export default function CartEntry({
 
   useEffect(() => {
     if (searchParams.get("success")) {
+      
+      clearCart();
       toast.success("Purchase Complete");
+      
     }
   });
 
   useEffect(() => {
     if (searchParams.get("canceled")) {
+      clearCart();
       toast.error("Order cancelled");
     }
   });

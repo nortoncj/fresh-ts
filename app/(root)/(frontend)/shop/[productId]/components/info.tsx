@@ -14,6 +14,9 @@ import { Product } from "@/types";
 import { Cinzel, Fauna_One } from "next/font/google";
 import AddToCartButton from "./addToCartButton";
 import { incrementProductQuantity } from "../actions";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface InfoProps {
   data: Product;
@@ -22,14 +25,18 @@ const fauna = Fauna_One({ subsets: ["latin"], weight: "400" });
 const cinzel = Cinzel({ subsets: ["latin"], weight: "400" });
 
 const Info: React.FC<InfoProps> = ({ data }) => {
-
-  const [loading, setLoading] = useState(false)
-  useEffect(()=> {
-    setLoading(true)
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
     setTimeout(() => {
-      setLoading(false)
-    }, 5000)
-  }, [])
+      setLoading(false);
+    }, 5000);
+  }, []);
+
+  const customize = () => {
+    router.push(`${data.id}/custom`);
+  };
 
   return (
     <div>
@@ -56,10 +63,14 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         </div>
       </div>
       <div className="mt-10 flex items-center gap-x-3">
-        <AddToCartButton
-          productId={data.id}
-          incrementProductQuantity={incrementProductQuantity}
-        />
+        {data?.customizable ? (
+          <Button onClick={customize}>Customize </Button>
+        ) : (
+          <AddToCartButton
+            productId={data.id}
+            incrementProductQuantity={incrementProductQuantity}
+          />
+        )}
       </div>
       <div className="py-12">
         <Accordion type="single" collapsible className="w-full ">
