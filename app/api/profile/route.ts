@@ -16,6 +16,7 @@ export async function POST(
     const {
       username,
       name,
+      lastName,
       email,
       image,
       proNouns,
@@ -24,6 +25,8 @@ export async function POST(
       phone,
       address,
       link1,
+      linkText1,
+      linkText2,
       link2,
       fb,
       tw,
@@ -75,6 +78,8 @@ export async function POST(
         phone,
         address,
         link1,
+        linkText1,
+        linkText2,
         link2,
         fb,
         tw,
@@ -84,6 +89,7 @@ export async function POST(
         yt,
         twt,
         name,
+        lastName,
         hashedPassword,
       },
     });

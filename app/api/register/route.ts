@@ -6,10 +6,20 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, password } = body;
+    const { name, email, password, username } = body;
 
-    if (!email || !password || !name) {
+    if (!email || !password || !name || !username) {
       return new NextResponse("Missing Information", { status: 400 });
+    }
+
+    const checkUsername = await prisma.user.findUnique({
+      where: {
+        username: username,
+      },
+    });
+
+    if (checkUsername) {
+      return new NextResponse("Username is Taken", { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -17,6 +27,7 @@ export async function POST(request: Request) {
     const user = await prisma.user.create({
       data: {
         email,
+        username,
         name,
         hashedPassword,
       },

@@ -32,13 +32,16 @@ import {
 
 const formSchema = z.object({
   name: z?.string().min(2),
+  lastName: z?.string() || null,
   username: z.string().min(5),
   proNouns: z?.string().max(10),
   title: z?.string().min(0),
   bio: z?.string().max(450),
   email: z.string().min(1),
-  phone: z?.string().max(10) || null,
+  phone: z?.string().max(15) || null,
   address: z?.string() || null,
+  linkText1: z?.string() || null,
+  linkText2: z?.string() || null,
   link1: z?.string() || null,
   link2: z?.string() || null,
   fb: z?.string() || null,
@@ -73,6 +76,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
     // @ts-ignore
     defaultValues: initialData || {
       name: "",
+      lastname: "",
       email: "",
       bio: "",
       proNouns: "",
@@ -80,6 +84,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
       phone: "",
       address: "",
       link1: "",
+      linkText1: "",
+      linkText2: "",
       link2: "",
       fb: "",
       tw: "",
@@ -164,9 +170,26 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>First Name</FormLabel>
                   <FormControl>
                     <Input disabled={loading} placeholder="Name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="Last Name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -206,6 +229,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
+                      <SelectItem value="">None</SelectItem>
                       <SelectItem value="He/Him">He/Him</SelectItem>
                       <SelectItem value="She/Her">She/Her</SelectItem>
                       <SelectItem value="Them/They">Them/They</SelectItem>
@@ -233,23 +257,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="bio"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Intro</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      disabled={loading}
-                      placeholder="Elevator Pitch"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+           
             <FormField
               control={form.control}
               name="phone"
@@ -285,33 +293,97 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
+             <FormField
+              control={form.control}
+              name="bio"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Intro</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={loading}
+                      placeholder="Elevator Pitch"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-          <FormField
-            control={form.control}
-            name="link1"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Link</FormLabel>
-                <FormControl>
-                  <Input disabled={loading} placeholder="link" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="link2"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Link</FormLabel>
-                <FormControl>
-                  <Input disabled={loading} placeholder="link" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex gap-4">
+            <FormField
+              control={form.control}
+              name="linkText1"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Link Label</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="Link Text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="link1"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Link</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="https://YOUR_LINK.com"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex gap-4">
+            <FormField
+              control={form.control}
+              name="linkText2"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Link Label</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="Link Text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="link2"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Link</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="https://YOUR_LINK.com"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <Separator />
           <FormField
             control={form.control}
             name="fb"

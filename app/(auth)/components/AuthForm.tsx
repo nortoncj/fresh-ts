@@ -45,6 +45,7 @@ const AuthForm = () => {
       name: "",
       email: "",
       password: "",
+      username: "",
     },
   });
 
@@ -109,13 +110,25 @@ const AuthForm = () => {
           {variant == "REGISTER" && (
             <div className="flex gap-4">
               <Input
-                id="name"
-                label="Name"
+                id="username"
+                label="Username"
+                type="username"
                 register={register}
                 errors={errors}
                 disabled={isLoading}
               />
+              <Input
+                id="name"
+                label="First Name"
+                type="name"
+                register={register}
+                errors={errors}
+                disabled={isLoading}
+              />
+              
             </div>
+            
+            
           )}
           <Input
             id="email"
@@ -150,10 +163,10 @@ const AuthForm = () => {
             icon={FcGoogle}
             onClick={() => socialAction("google")}
           />
-          <AuthSocialButton
+          {/* <AuthSocialButton
             icon={BsMicrosoft}
             onClick={() => socialAction("azure-ad")}
-          />
+          /> */}
         </div>
         <div className="flex gap-2 justify-center text=sm mt-6 text-gray-500">
           <div className="">

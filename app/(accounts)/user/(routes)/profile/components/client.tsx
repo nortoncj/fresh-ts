@@ -93,7 +93,7 @@ export const ProfileClient: React.FC<ProfileProps> = ({ user }) => {
             Personal Information
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Share who you are and where you do business.
+            {user.bio == "" || user.bio == " " || user.bio == null ? <>{user.bio}</> : <>Share who you are and where you do business.</>}
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -165,7 +165,7 @@ export const ProfileClient: React.FC<ProfileProps> = ({ user }) => {
                 Link
               </label>
               <div className="mt-2">
-                <span> {user?.link1} </span>
+                <span> {user?.linkText1} </span>
               </div>
             </div>
             <div className="mt-2">
@@ -176,7 +176,7 @@ export const ProfileClient: React.FC<ProfileProps> = ({ user }) => {
                 Link
               </label>
               <div className="mt-2">
-                <span> {user?.link2} </span>
+                <span> {user?.linkText2} </span>
               </div>
             </div>
           </div>

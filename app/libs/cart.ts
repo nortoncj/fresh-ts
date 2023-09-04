@@ -4,6 +4,7 @@ import { Cart, CartItem, Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import getCurrentUser from "../actions/getCurrentUser";
+import cron from 'node-cron'
 
 export type CartWithProducts = Prisma.CartGetPayload<{
   include: {
@@ -204,3 +205,38 @@ function mergeCartItems(...cartItems: CartItem[][]) {
     return acc;
   }, [] as CartItem[]);
 }
+
+async function deleteOldCartsWithoutUserId() {
+  try {
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+    // Find carts without a userId that are older than one month
+    const oldCarts = await prisma.cart.findMany({
+      where: {
+        userId: null,
+        createdAt: {
+          lt: oneMonthAgo,
+        },
+      },
+    });
+
+    if (oldCarts.length > 0) {
+      // Delete the old carts
+      for (const cart of oldCarts) {
+        await prisma.cart.delete({
+          where: {
+            id: cart.id,
+          },
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Error deleting old carts:', error);
+  }
+}
+
+// Schedule the task to run every day (adjust the schedule as needed)
+cron.schedule('0 0 * * *', () => {
+  deleteOldCartsWithoutUserId();
+});

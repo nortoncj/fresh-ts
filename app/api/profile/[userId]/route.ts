@@ -78,6 +78,7 @@ export async function PATCH(
     const {
       username,
       name,
+      lastName,
       email,
       image,
       proNouns,
@@ -86,6 +87,8 @@ export async function PATCH(
       phone,
       address,
       link1,
+      linkText1,
+      linkText2,
       link2,
       fb,
       tw,
@@ -116,16 +119,8 @@ export async function PATCH(
       return new NextResponse("Unauthenticated", { status: 403 });
     }
 
-    const storeByUserId = await prismadb.store.findFirst({
-      where: {
-        id: params.storeId,
-        userId,
-      },
-    });
-
-    if (!storeByUserId) {
-      return new NextResponse("Unauthorized", { status: 405 });
-    }
+    
+ 
 
     const profile = await prismadb.user.update({
       where: {
@@ -141,6 +136,8 @@ export async function PATCH(
         phone,
         address,
         link1,
+        linkText1,
+        linkText2,
         link2,
         fb,
         tw,
@@ -150,6 +147,7 @@ export async function PATCH(
         yt,
         twt,
         name,
+        lastName
       },
     });
 
