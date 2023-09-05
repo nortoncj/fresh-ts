@@ -6,6 +6,7 @@ import { HiMail, HiPhone } from "react-icons/hi";
 import { AddToContact } from "./components/addToContact";
 import "./components/freemium.css";
 import Image from "next/image";
+import { Heading } from "@/components/ui/heading";
 interface ProfilePageProps {
   params: { username: string };
 }
@@ -16,8 +17,9 @@ const ProfilePage: FC<ProfilePageProps> = async ({ params }) => {
   return (
     <>
       {user ? (
+        
         <>
-          <div className="" id="lock">
+          <div className="mt-2" id="lock">
             <div className="header h-30 w-full  py-2">
               <Image
                 className="mx-auto"
@@ -91,7 +93,7 @@ const ProfilePage: FC<ProfilePageProps> = async ({ params }) => {
                   </Link>
                 ) : null}
                 {user.link2 ? (
-                  <Link href={user.link2}>
+                  <Link className="" href={user.link2}>
                     <div className="link button w-96 mx-auto">
                       {user?.linkText2}
                     </div>
@@ -100,9 +102,13 @@ const ProfilePage: FC<ProfilePageProps> = async ({ params }) => {
               </div>
             </div>
           </div>
+          <div className="h-10"></div>
         </>
       ) : (
-        <div>User Not Found</div>
+        <Heading
+          title="User not found!"
+          description="Please enter a valid username"
+        />
       )}
     </>
   );

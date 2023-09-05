@@ -120,6 +120,8 @@ model User {
   UserSubscription UserSubscription[]
   @@map("users")
 }
+
+
 model UserSubscription {
   id                     String    @id @default(auto()) @map("_id") @db.ObjectId
   userId                 String    @db.ObjectId
@@ -130,6 +132,8 @@ model UserSubscription {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@map("UserSubscription")
 }
+
+
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId

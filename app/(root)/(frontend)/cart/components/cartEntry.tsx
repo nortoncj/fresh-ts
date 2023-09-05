@@ -39,11 +39,14 @@ export default function CartEntry({
   useEffect(() => {
     if (searchParams.get("success")) {
       
-      clearCart();
+     
       toast.success("Purchase Complete");
       
     }
   });
+
+  
+
 
   useEffect(() => {
     if (searchParams.get("canceled")) {

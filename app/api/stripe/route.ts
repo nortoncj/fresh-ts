@@ -3,7 +3,8 @@ import prismadb from "@/lib/prismadb"
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-const settingsUrl = absoluteUrl("/user");
+
+const settingsUrl = absoluteUrl("/user?success=1");
 export async function GET() {
     try {
         const user = await getCurrentUser()
@@ -30,7 +31,7 @@ export async function GET() {
             payment_method_types: ["card"],
             mode: "subscription",
             billing_address_collection: "auto",
-            customer_email: user.email as string,
+            customer_email: user?.email as string,
             line_items: [
                 {
                     price_data: {
@@ -48,9 +49,10 @@ export async function GET() {
                 }
             ],
             metadata: {
-                userId
+                userId,
             },
         })
+
         return new NextResponse(JSON.stringify({url: stripeSession.url}))
         
     } catch (error) {
