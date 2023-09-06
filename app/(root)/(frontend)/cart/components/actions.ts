@@ -4,16 +4,20 @@ import { createCart, getCart } from "@/app/libs/cart";
 import prisma from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 import { useParams, useSearchParams } from "next/navigation";
+import CartItem from "./cart-item";
+
 
 export async function clearCart() {
-  const cart = (await getCart()) ?? (await createCart());
+  const cart = await getCart();
+  if(cart){
     await prisma.cartItem.deleteMany({
       where: { cartId: cart.id },
     });
-  
+}
 }
 
-export async function setProductQuantity(productId: string, quantity: number,params:object | null) {
+
+export async function setProductQuantity(productId: string, quantity: number) {
   const cart = (await getCart()) ?? (await createCart());
 
   const articleInCart = cart.items.find((item) => item.productId === productId);

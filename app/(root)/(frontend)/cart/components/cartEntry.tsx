@@ -12,16 +12,17 @@ import toast from "react-hot-toast";
 
 
 
+
 interface CartEntryProps {
   cartItem: CartItemWithProduct;
   setProductQuantity: (productId: string, quantity: number,) => Promise<void>;
-  clearCart: () => Promise<void>;
+  
 }
 
 export default function CartEntry({
   cartItem: { product, quantity },
   setProductQuantity,
-  clearCart,
+  
 }: CartEntryProps) {
   const [isPending, startTransition] = useTransition();
   const params = useParams();
@@ -50,7 +51,7 @@ export default function CartEntry({
 
   useEffect(() => {
     if (searchParams.get("canceled")) {
-      clearCart();
+      
       toast.error("Order cancelled");
     }
   });
