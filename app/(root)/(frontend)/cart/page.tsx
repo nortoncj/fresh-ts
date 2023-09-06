@@ -3,7 +3,7 @@ import Container from "@/components/ui/container";
 import { getCart } from "@/app/libs/cart";
 import CartEntry from "./components/cartEntry";
 import Summary from "./components/summary";
-import { setProductQuantity } from "./components/actions";
+import { setProductQuantity, clearCart } from "./components/actions";
 
 export const revalidate = 0;
 
@@ -22,7 +22,7 @@ const CartPage = async () => {
               )}
               <ul>
                 {cart?.items.map((cartItem) => (
-                  <CartEntry cartItem={cartItem}  key={cartItem.id} setProductQuantity={setProductQuantity} />
+                  <CartEntry cartItem={cartItem}  key={cartItem.id} setProductQuantity={setProductQuantity} clearCart={clearCart} />
                 ))}
               </ul>
             </div>
