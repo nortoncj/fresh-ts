@@ -5,9 +5,11 @@ import GoogleProvider from "next-auth/providers/google";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-import prisma from "../../../libs/prismadb";
+import prisma from "@/lib/prismadb";
 import { env } from "@/lib/env";
 import { mergeAnonymousCartIntoUserCart } from "@/app/libs/cart";
+import { NextResponse } from "next/server";
+
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -26,9 +28,14 @@ export const authOptions: AuthOptions = {
       credentials: {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
+        username: { label: "username", type: "text" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        if (
+          !credentials?.email ||
+          !credentials?.password ||
+          !credentials?.username
+        ) {
           throw new Error("Invalid Credentials");
         }
 
@@ -37,8 +44,9 @@ export const authOptions: AuthOptions = {
             email: credentials.email,
           },
         });
+       
 
-        if (!user || !user?.hashedPassword) {
+        if (!user || !user?.hashedPassword || !user?.username) {
           throw new Error("Invalid creditials");
         }
 

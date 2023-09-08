@@ -13,6 +13,7 @@ import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import { FormDescription } from "@/components/ui/form";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -108,15 +109,22 @@ const AuthForm = () => {
       <div className="bg-white px-4 py-8 shadow sm:rouded-lg sm:px-10">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {variant == "REGISTER" && (
-            <div className="flex gap-4">
-              <Input
-                id="username"
-                label="Username"
-                type="username"
-                register={register}
-                errors={errors}
-                disabled={isLoading}
-              />
+            <div className="gap-4">
+              <div className="">
+                <Input
+                  id="username"
+                  label="Username"
+                  type="username"
+                  register={register}
+                  errors={errors}
+                  disabled={isLoading}
+                />
+                <small className="text-gray-400">
+                  must be unique: no spaces, capitals, or other special
+                  characters than - and _
+                </small>
+              </div>
+
               <Input
                 id="name"
                 label="First Name"
@@ -125,11 +133,9 @@ const AuthForm = () => {
                 errors={errors}
                 disabled={isLoading}
               />
-              
             </div>
-            
-            
           )}
+
           <Input
             id="email"
             label="Email"
@@ -138,6 +144,7 @@ const AuthForm = () => {
             errors={errors}
             disabled={isLoading}
           />
+
           <Input
             id="password"
             label="Password"
