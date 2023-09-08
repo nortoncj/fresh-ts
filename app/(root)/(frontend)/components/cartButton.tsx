@@ -8,6 +8,9 @@ import { CartItemWithProduct, ShoppingCart } from "@/app/libs/cart";
 import CartEntry from "./cartEntry";
 import { setProductQuantity } from "./cartActions";
 import axios from "axios";
+import { Fauna_One } from "next/font/google";
+
+const faunaOne = Fauna_One({ subsets: ["latin"], weight: "400" });
 
 interface ShoppingCartButtonProps {
   cart: ShoppingCart | null;
@@ -87,8 +90,8 @@ export default function CartButton({ cart }: ShoppingCartButtonProps) {
                 </span>
               </div>
             </div>
-            <button onClick={() => router.push("/cart")}>View Cart</button>
-            <button onClick={onCheckout} disabled={cart?.size === 0}>
+            <button style={faunaOne.style} onClick={() => router.push("/cart")}>View Cart</button>
+            <button style={faunaOne.style} onClick={onCheckout} disabled={cart?.size === 0}>
               Continue
             </button>
           </div>

@@ -1,7 +1,7 @@
 "use server";
 
 import { createCart, getCart } from "@/app/libs/cart";
-import prisma from "@/lib/prismadb";
+import prisma from "@/app/libs/prismadb";
 import { revalidatePath } from "next/cache";
 import { useParams, useSearchParams } from "next/navigation";
 import CartItem from "./cart-item";
@@ -10,9 +10,17 @@ import CartItem from "./cart-item";
 export async function clearCart() {
   const cart = await getCart();
   if(cart){
-    await prisma.cartItem.deleteMany({
-      where: { cartId: cart.id },
-    });
+    await prisma.cart.update({
+      where: {id: cart.id},
+      data: {
+        items: {
+          deleteMany: {cartId: cart.id}
+        }
+      }
+    })
+    // await prisma.cartItem.deleteMany({
+    //   where: { cartId: cart.id },
+    // });
 }
 }
 

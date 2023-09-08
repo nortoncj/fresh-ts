@@ -156,6 +156,8 @@ export async function mergeAnonymousCartIntoUserCart(userId: string) {
         },
       });
 
+     
+
       await tx.cart.update({
         where: { id: userCart.id },
         data: {

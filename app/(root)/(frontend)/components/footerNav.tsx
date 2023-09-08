@@ -2,7 +2,10 @@ import Link from "next/link";
 import { Fauna_One, Cinzel } from "next/font/google";
 import "./footer.css";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { BsTiktok, BsTwitter, BsYoutube } from "react-icons/bs";
+import {RiTwitterXFill} from "react-icons/ri"
+import { BsTiktok, BsYoutube } from "react-icons/bs";
+
+
 const cinzel = Cinzel({ subsets: ["latin"] });
 const faunaOne = Fauna_One({ subsets: ["latin"], weight: "400" });
 
@@ -72,7 +75,7 @@ export const FooterNav = () => {
                 <BsYoutube className=" mx-auto my-3 " />
               </Link>
               <Link href="#">
-                <BsTwitter className=" mx-auto my-3 " />
+                <RiTwitterXFill className=" mx-auto my-3 " />
               </Link>
               <Link href="#">
                 <BsTiktok className=" mx-auto my-3 " />

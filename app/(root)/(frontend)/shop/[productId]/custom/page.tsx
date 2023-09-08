@@ -32,6 +32,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import CustomizeButton from "./components/uploadButton";
 import { incrementCustomProductQuantity } from "./actions";
 import { useRouter } from "next/navigation";
+import ClipLoader from "react-spinners/ClipLoader";
 // FORM FUNCTIONS
 const formSchema = z.object({
   customImage: z.string().min(2),
@@ -52,6 +53,7 @@ interface CustomProps {
   };
 }
 const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
+  
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedfile, setSelectedFile] = useState<File>();
@@ -177,6 +179,10 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
             >
               {uploading ? "Uploading.." : "Submit Upload"}
             </Button>
+            {isPending && <ClipLoader />}
+      {!isPending && success && (
+        <span className="text-success italic">Item Added</span>
+      )}
           </div>
         </form>
       </Form>
