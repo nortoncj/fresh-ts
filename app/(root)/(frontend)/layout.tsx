@@ -18,7 +18,7 @@ import { Product } from "@/types";
 import Currency from "@/components/ui/currency";
 import IconButton from "@/components/ui/icon-button";
 import { NavEnd } from "./components/navEnd";
-import getSession from "@/app/actions/getSession";
+
 
 const cinzel = Cinzel({ subsets: ["latin"] });
 

@@ -20,11 +20,7 @@ const Shop = () => {
           <h1 className="product-description__title" style={cinzel.style}>Our Story</h1>
           <div className="product-description__info">
             <h2 style={faunaOne.style}>
-              Made from four layers of archival-quality Mohawk Superfine
-              (nothing prints better), these are seriously thick Business Cards
-              with a beautiful, natural texture. Plus there's that pop of color
-              right in the middle. Everything about Luxe Business Cards is
-              designed to make people go "Oooh".
+            Cardicus is a cutting-edge NFC card company that prioritizes four core values - Quality, Ambition, Reliability, and Luxury. We are dedicated to delivering NFC card solutions that are not only technologically advanced but also reflect a sense of style and sophistication. Our commitment to these values will set us apart in the NFC card industry.
             </h2>
           </div>
         </div>

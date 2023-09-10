@@ -120,8 +120,8 @@ const AuthForm = () => {
                   disabled={isLoading}
                 />
                 <small className="text-gray-400">
-                  must be unique: no spaces, capitals, or other special
-                  characters than - and _
+                  must be unique alphanumeric, no spaces, capitals; dashes and
+                  underscores are allowed
                 </small>
               </div>
 

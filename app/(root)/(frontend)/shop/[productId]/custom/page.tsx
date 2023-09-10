@@ -26,7 +26,6 @@ import { NextPage } from "next";
 import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 import axios from "axios";
 import AddToCartButton from "../components/addToCartButton";
-import Dropzone from "./components/dropzone";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CustomizeButton from "./components/uploadButton";
@@ -39,21 +38,14 @@ const formSchema = z.object({
   branded: z.boolean().default(true),
 });
 type CustomFormValues = z.infer<typeof formSchema>;
+
 interface CustomProps {
-  customImage: string;
-  branded: boolean;
-  incrementCustomProductQuantity: (
-    productId: string,
-    customImage: string,
-    branded: boolean
-  ) => Promise<void>;
-  dirs: string[];
   params: {
     productId: string;
   };
 }
-const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
-  
+
+const CustomizeOrder: React.FC<CustomProps> = ({ params }) => {
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedfile, setSelectedFile] = useState<File>();
@@ -68,6 +60,7 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
   const form = useForm<CustomFormValues>({
     resolver: zodResolver(formSchema),
   });
+
   const handleOnSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (file) {
@@ -160,29 +153,12 @@ const CustomizeOrder: NextPage<CustomProps> = ({ params }) => {
             )}
           </div>
           <div className=" flex mx-80 mb-2 justify-end ">
-            <Button
-              onClick={() => {
-                setSuccess(false);
-                startTransition(async () => {
-                  await incrementCustomProductQuantity(
-                    productId,
-                    newFileName,
-                    branded
-                  );
-                  setSuccess(true);
-                });
-              }}
-              variant="outline"
-              className="text-center my-2 "
-              type="submit"
-              disabled={uploading}
-            >
-              {uploading ? "Uploading.." : "Submit Upload"}
-            </Button>
-            {isPending && <ClipLoader />}
-      {!isPending && success && (
-        <span className="text-success italic">Item Added</span>
-      )}
+            <CustomizeButton
+              incrementCustomProductQuantity={incrementCustomProductQuantity}
+              productId={productId}
+              customImage={newFileName}
+              branded={false}
+            />
           </div>
         </form>
       </Form>

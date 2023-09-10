@@ -3,7 +3,7 @@
 import clsx from "clsx";
 
 interface ButtonProps {
-  type?: "button" | "submit" | "resest" | "undefined";
+  type?: "button" | "submit" | "reset";
   fullwidth?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;

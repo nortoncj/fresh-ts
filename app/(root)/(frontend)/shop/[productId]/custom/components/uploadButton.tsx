@@ -13,7 +13,7 @@ interface CustomizeButtonProps {
   incrementCustomProductQuantity: (
     productId: string,
     customImage: string,
-    branded: boolean
+    branded: boolean,
   ) => Promise<void>;
 }
 
@@ -29,7 +29,7 @@ export default function CustomizeButton({
   return (
     <div className="flex items-center gap-2">
       <Button
-        className="btn btn-primary bg-amber-200 text-[#65272c] hover:bg-amber-900"
+        className="btn btn-primary bg-[#65272c] hover:bg-amber-900"
         style={cinzel.style}
         onClick={() => {
           setSuccess(false);

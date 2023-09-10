@@ -8,10 +8,10 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prismadb";
 import { env } from "@/lib/env";
 import { mergeAnonymousCartIntoUserCart } from "@/app/libs/cart";
-import { NextResponse } from "next/server";
 
 
-export const authOptions: AuthOptions = {
+
+const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     AzureADProvider({
@@ -77,5 +77,7 @@ export const authOptions: AuthOptions = {
   secret: env.NEXTAUTH_SECRET,
 };
 
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+ 
+ const handler = NextAuth(authOptions);
+ export  { handler as GET, handler as POST };
+ 

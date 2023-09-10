@@ -3,7 +3,7 @@ import prismadb from "@/lib/prismadb";
 import { ProfileForm } from "../components/profile-form";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
-const ProfilePage = async ({ currentUser }: { currentUser: { userId: string } }) => {
+const ProfilePage = async () => {
   const user = await getCurrentUser();
   const profile = await prismadb.user.findUnique({
     where: {
