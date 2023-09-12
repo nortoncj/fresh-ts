@@ -90,8 +90,8 @@ export default function CartButton({ cart }: ShoppingCartButtonProps) {
                 </span>
               </div>
             </div>
-            <button style={faunaOne.style} onClick={() => router.push("/cart")}>View Cart</button>
-            <button style={faunaOne.style} onClick={onCheckout} disabled={cart?.size === 0}>
+            <button  onClick={() => router.push("/cart")}>View Cart</button>
+            <button  onClick={onCheckout} disabled={cart?.size === 0}>
               Continue
             </button>
           </div>

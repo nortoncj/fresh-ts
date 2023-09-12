@@ -24,7 +24,6 @@ const cinzel = Cinzel({ subsets: ["latin"] });
 
 interface FrontNavProps {
   children: React.ReactNode;
-  cartItem: Product;
 }
 
 const Navigation: React.FC<FrontNavProps> = ({ children }) => {
