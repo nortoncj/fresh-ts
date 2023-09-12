@@ -17,10 +17,17 @@ const Shop = () => {
     <section className="product">
       <div className="product-container">
         <div className="product-description">
-          <h1 className="product-description__title" style={cinzel.style}>Our Story</h1>
+          <h1 className="product-description__title" style={cinzel.style}>
+            Our Story
+          </h1>
           <div className="product-description__info">
             <h2 style={faunaOne.style}>
-            Cardicus is a cutting-edge NFC card company that prioritizes four core values - Quality, Ambition, Reliability, and Luxury. We are dedicated to delivering NFC card solutions that are not only technologically advanced but also reflect a sense of style and sophistication. Our commitment to these values will set us apart in the NFC card industry.
+              Cardicus is a cutting-edge NFC card company that prioritizes four
+              core values - Quality, Ambition, Reliability, and Luxury. We are
+              dedicated to delivering NFC card solutions that are not only
+              technologically advanced but also reflect a sense of style and
+              sophistication. Our commitment to these values will set us apart
+              in the NFC card industry.
             </h2>
           </div>
         </div>
@@ -80,25 +87,22 @@ const Shop = () => {
         <AccordionItem value="item-1">
           <AccordionTrigger style={cinzel.style}>Payments</AccordionTrigger>
           <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
+            We accept all major credit cards and electronic payments.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
           <AccordionTrigger style={cinzel.style}>Privacy</AccordionTrigger>
           <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
+            We only keep the data we need and we don't share.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
           <AccordionTrigger style={cinzel.style}>How it works</AccordionTrigger>
           <AccordionContent>
-            Yes. It&apos;s animated by default, but you can disable it if you
-            prefer.
+            Just tap your device to any NFC enabled device.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      
     </section>
   );
 };
