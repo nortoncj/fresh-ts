@@ -4,43 +4,42 @@ import { Fauna_One } from "next/font/google";
 const faunaOne = Fauna_One({ subsets: ["latin"], weight: "400" });
 
 export const AnnouncementBar = () => {
-  const TargetDate = new Date("2024-01-01T00:00:00");
-
   // Initialize state variables for the countdown
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
- 
-
   useEffect(() => {
-     // Function to calculate and update the countdown
-  const updateCountdown = () => {
-    const currentDate = new Date();
-    const timeDifference = TargetDate.getTime() - currentDate.getTime();
+    const TargetDate = new Date("2024-01-01T00:00:00");
+    // Function to calculate and update the countdown
+    const updateCountdown = () => {
+      const currentDate = new Date();
+      const timeDifference = TargetDate.getTime() - currentDate.getTime();
 
-    if (timeDifference <= 0) {
-      // Target date has passed
-      //@ts-ignore
-      clearInterval(interval);
-      return;
-    }
+      if (timeDifference <= 0) {
+        // Target date has passed
+        //@ts-ignore
+        clearInterval(interval);
+        return;
+      }
 
-    const remainingDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const remainingHours = Math.floor(
-      (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const remainingMinutes = Math.floor(
-      (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    const remainingSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      const remainingDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const remainingHours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const remainingMinutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const remainingSeconds = Math.floor(
+        (timeDifference % (1000 * 60)) / 1000
+      );
 
-    setDays(remainingDays);
-    setHours(remainingHours);
-    setMinutes(remainingMinutes);
-    setSeconds(remainingSeconds);
-  };
+      setDays(remainingDays);
+      setHours(remainingHours);
+      setMinutes(remainingMinutes);
+      setSeconds(remainingSeconds);
+    };
     // Calculate and update the countdown initially
     updateCountdown();
 
@@ -49,7 +48,7 @@ export const AnnouncementBar = () => {
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
-  }, [TargetDate]);
+  }, []);
 
   return (
     <div className="announcement-bar top-nav__group">

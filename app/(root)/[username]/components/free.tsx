@@ -35,14 +35,11 @@ const Freemium: FC<ProfilePageProps> = async ({ params }) => {
             <div className="content w-100 flex px-5 py-5 items-center flex-col  ">
               <div className="card relative h-[450px] ">
                 <div className="user w-96 ">
-                  <img
+                  <Image
                     alt="image"
                     className=" user"
                     src={user?.image || "/images/default.png"}
-                    srcSet={`${user?.image} 400w,
-                  ${user?.image} 1600w,
-                  ${user?.image} 800w,
-                  `}
+                    layout="fill"
                     sizes="100vw"
                   />
                   <div className="profile justify-evenly flex rounded-xl">
