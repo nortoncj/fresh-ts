@@ -32,6 +32,7 @@ import CustomizeButton from "./components/uploadButton";
 import { incrementCustomProductQuantity } from "./actions";
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
+import Image from "next/image";
 // FORM FUNCTIONS
 const formSchema = z.object({
   customImage: z.string().min(2),
@@ -140,10 +141,10 @@ const CustomizeOrder: React.FC<CustomProps> = ({ params }) => {
                   <div className="text-extrabold text-xl">Image</div>
                   <div className="">
                     <div className=" w-40 mb-2  aspect-video border-dashed rounded flex items-center justify-center border-2  cursor-pointer">
-                      <img src={selectedImage} alt="" />
+                      <Image layout="fill" src={selectedImage} alt="" />
                     </div>
                     <div className=" w-40 mb-2 bg-slate-900  aspect-video border-dashed rounded flex items-center justify-center border-2  cursor-pointer">
-                      <img src={selectedImage} alt="" />
+                      <Image layout="fill" src={selectedImage} alt="" />
                     </div>
                   </div>
                 </div>

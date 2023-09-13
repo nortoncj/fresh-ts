@@ -87,7 +87,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                   
                   <div className="avatar">
                     <div className="w-30 rounded-full">
-                      <img className="rounded-full " src={image || currentUser?.image || "/images/default.png"} />
+                      <Image layout="fill"  alt="profile" className="rounded-full " src={image || currentUser?.image || "/images/default.png"} />
                     </div>
                   </div>
                   

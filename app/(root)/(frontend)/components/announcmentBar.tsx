@@ -49,7 +49,7 @@ export const AnnouncementBar = () => {
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
-  }, []);
+  }, [TargetDate]);
 
   return (
     <div className="announcement-bar top-nav__group">

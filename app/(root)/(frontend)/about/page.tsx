@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Image from "next/image";
 
 const faunaOne = Fauna_One({ subsets: ["latin"], weight: "400" });
 const cinzel = Cinzel({ subsets: ["latin"], weight: "400" });
@@ -36,24 +37,27 @@ const Shop = () => {
             <div className="product__item-heart"></div>
             <div className="product__slider">
               <div className="product__slide product__slide-img">
-                <img
+                <Image
                   src="https://images.pexels.com/photos/4466176/pexels-photo-4466176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="placeholder"
                   className="img-responsive"
+                  layout="fill"
                 />
               </div>
               <div className="product__slide product__slide-model">
-                <img
+                <Image
                   src="https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="model"
                   className="img-responsive"
+                  layout="fill"
                 />
               </div>
               <div className="product__slide product__slide-img">
-                <img
+                <Image
                   src="https://images.pexels.com/photos/4040600/pexels-photo-4040600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="model"
                   className="img-responsive"
+                  layout="fill"
                 />
               </div>
 
