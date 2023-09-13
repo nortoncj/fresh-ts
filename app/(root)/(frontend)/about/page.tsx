@@ -62,7 +62,8 @@ const Shop = () => {
               </div>
 
               <div className="product__slide product__slide-img">
-                <img
+                <Image
+                  layout="fill"
                   src="https://images.pexels.com/photos/4466448/pexels-photo-4466448.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="model"
                   className="img-responsive"
@@ -97,7 +98,7 @@ const Shop = () => {
         <AccordionItem value="item-2">
           <AccordionTrigger style={cinzel.style}>Privacy</AccordionTrigger>
           <AccordionContent>
-            We only keep the data we need and we don't share.
+            We only keep the data we need and we do not share.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
