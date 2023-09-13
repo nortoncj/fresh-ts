@@ -97,7 +97,7 @@ const useAdminRoutes = () => {
         icon: HiArrowLeftOnRectangle,
       },
     ],
-    [pathname, conversationId, params.storeId]
+    [pathname, params.storeId]
   );
 
   return routes;

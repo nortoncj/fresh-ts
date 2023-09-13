@@ -12,7 +12,10 @@ export const AnnouncementBar = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  // Function to calculate and update the countdown
+ 
+
+  useEffect(() => {
+     // Function to calculate and update the countdown
   const updateCountdown = () => {
     const currentDate = new Date();
     const timeDifference = TargetDate.getTime() - currentDate.getTime();
@@ -38,8 +41,6 @@ export const AnnouncementBar = () => {
     setMinutes(remainingMinutes);
     setSeconds(remainingSeconds);
   };
-
-  useEffect(() => {
     // Calculate and update the countdown initially
     updateCountdown();
 
@@ -48,7 +49,7 @@ export const AnnouncementBar = () => {
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
-  }, [updateCountdown]);
+  }, []);
 
   return (
     <div className="announcement-bar top-nav__group">
