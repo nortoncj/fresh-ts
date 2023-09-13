@@ -3,13 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Fauna_One } from "next/font/google";
 const faunaOne = Fauna_One({ subsets: ["latin"], weight: "400" });
 
-
-
- 
-
 export const AnnouncementBar = () => {
-
-
   const TargetDate = new Date("2024-01-01T00:00:00");
 
   // Initialize state variables for the countdown
@@ -54,12 +48,8 @@ export const AnnouncementBar = () => {
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
-  }, []);
+  }, [updateCountdown]);
 
-
-
-  
-  
   return (
     <div className="announcement-bar top-nav__group">
       <div
@@ -69,27 +59,27 @@ export const AnnouncementBar = () => {
         Ship to: US
       </div>
       <div className="countdown-menu">
-  <div className="countdown-menu_messsage--desktop">
-    <h1 style={faunaOne.style}>GRAND OPENING</h1>
-  </div>
-  <div className="countdown-menu_numbers">
-  <div className="days" style={faunaOne.style}>
-    {days}
-  </div>
-  <span> :</span>
-  <div className="hours" style={faunaOne.style}>
-    {hours}
-  </div>
-  <span> :</span>
-  <div className="minutes" style={faunaOne.style}>
-    {minutes}
-  </div>
-  <span> :</span>
-  <div className="seconds" style={faunaOne.style}>
-    {seconds}
-  </div>
-</div>
-</div> 
+        <div className="countdown-menu_messsage--desktop">
+          <h1 style={faunaOne.style}>GRAND OPENING</h1>
+        </div>
+        <div className="countdown-menu_numbers">
+          <div className="days" style={faunaOne.style}>
+            {days}
+          </div>
+          <span> :</span>
+          <div className="hours" style={faunaOne.style}>
+            {hours}
+          </div>
+          <span> :</span>
+          <div className="minutes" style={faunaOne.style}>
+            {minutes}
+          </div>
+          <span> :</span>
+          <div className="seconds" style={faunaOne.style}>
+            {seconds}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
