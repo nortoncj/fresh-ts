@@ -141,10 +141,10 @@ const CustomizeOrder: React.FC<CustomProps> = ({ params }) => {
                   <div className="text-extrabold text-xl">Image</div>
                   <div className="">
                     <div className=" w-40 mb-2  aspect-video border-dashed rounded flex items-center justify-center border-2  cursor-pointer">
-                      <Image layout="fill" src={selectedImage} alt="" />
+                      <img src={selectedImage} alt="" />
                     </div>
                     <div className=" w-40 mb-2 bg-slate-900  aspect-video border-dashed rounded flex items-center justify-center border-2  cursor-pointer">
-                      <Image layout="fill" src={selectedImage} alt="" />
+                      <img src={selectedImage} alt="" />
                     </div>
                   </div>
                 </div>

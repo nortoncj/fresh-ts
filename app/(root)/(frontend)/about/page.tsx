@@ -37,23 +37,16 @@ const Shop = () => {
             <div className="product__item-heart"></div>
             <div className="product__slider">
               <div className="product__slide product__slide-img">
-                <Image
+                <img
                   src="https://images.pexels.com/photos/4466176/pexels-photo-4466176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="placeholder"
                   className="img-responsive"
-                  layout="fill"
+                  
                 />
               </div>
               <div className="product__slide product__slide-model">
                 <img
                   src="https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                  alt="model"
-                  className="img-responsive"
-                />
-              </div>
-              <div className="product__slide product__slide-img">
-                <img
-                  src="https://images.pexels.com/photos/4040600/pexels-photo-4040600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="model"
                   className="img-responsive"
                 />
