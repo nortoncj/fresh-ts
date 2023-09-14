@@ -7,10 +7,10 @@ export default function Home() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Image
           alt="logo"
-          height="72"
-          width="72"
+          height="400"
+          width="400"
           className="mx-auto w-auto"
-          src="/images/icon.png"
+          src="/images/words_camel.png"
         />
         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
           {" "}
