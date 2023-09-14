@@ -47,9 +47,9 @@ export const MobileNav = () => {
           >
             About
           </Link>
-          <Link className="nav-nav-link_link" href="/blog" style={cinzel.style}>
+          {/* <Link className="nav-nav-link_link" href="/blog" style={cinzel.style}>
             News
-          </Link>
+          </Link> */}
           <Link
             className="nav-nav-link_link"
             href="/login"

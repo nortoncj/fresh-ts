@@ -45,25 +45,22 @@ const Shop = () => {
                 />
               </div>
               <div className="product__slide product__slide-model">
-                <Image
+                <img
                   src="https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="model"
                   className="img-responsive"
-                  layout="fill"
                 />
               </div>
               <div className="product__slide product__slide-img">
-                <Image
+                <img
                   src="https://images.pexels.com/photos/4040600/pexels-photo-4040600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="model"
                   className="img-responsive"
-                  layout="fill"
                 />
               </div>
 
               <div className="product__slide product__slide-img">
-                <Image
-                  layout="fill"
+                <img
                   src="https://images.pexels.com/photos/4466448/pexels-photo-4466448.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="model"
                   className="img-responsive"

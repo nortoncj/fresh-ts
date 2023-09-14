@@ -62,13 +62,13 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
               >
                 ABOUT
               </Link>
-              <Link
+              {/* <Link
                 href="/blog"
                 className="nav-item nav-link nav-main nav-nav-link_link"
                 style={cinzel.style}
               >
                 NEWS
-              </Link>
+              </Link> */}
 
               <li className="nav_brand-logo nav-item">
                 <Link

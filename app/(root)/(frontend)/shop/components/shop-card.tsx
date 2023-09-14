@@ -57,8 +57,7 @@ const ShopCard: React.FC<ProductCard> = ({ data }) => {
         <div className="collections-products__slider">
           <div className="collections-products__slide collections-products__slide-model">
             <div className="collections-products__slide collections-products__slide-img h-full">
-              <Image
-              layout="fill"
+              <img
                 src={data.images?.[0]?.url}
                 alt="model"
                 className="img-responsive h-full"
@@ -67,8 +66,7 @@ const ShopCard: React.FC<ProductCard> = ({ data }) => {
           </div>
 
           <div className="collections-products__slide collections-products__slide-model h-full">
-            <Image
-            layout="fill"
+            <img
               src={data.images?.[1]?.url}
               alt="model"
               className="img-responsive"
