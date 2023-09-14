@@ -36,10 +36,10 @@ const useRoutes = () => {
       },
 
       {
-        label: "Illuminati",
-        href: "/user/illuminati",
+        label: "Legion",
+        href: "/user/legion",
         icon: HiMiniUserPlus,
-        active: pathname === "/user/illuminati",
+        active: pathname === "/user/legion",
       },
       {
         label: "Logout",

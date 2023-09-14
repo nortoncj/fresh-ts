@@ -28,13 +28,11 @@ const authOptions: AuthOptions = {
       credentials: {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
-        username: { label: "username", type: "text" },
       },
       async authorize(credentials) {
         if (
           !credentials?.email ||
-          !credentials?.password ||
-          !credentials?.username
+          !credentials?.password 
         ) {
           throw new Error("Invalid Credentials");
         }
