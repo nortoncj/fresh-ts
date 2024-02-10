@@ -11,7 +11,7 @@ export const AnnouncementBar = () => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const TargetDate = new Date("2024-01-01T00:00:00");
+    const TargetDate = new Date("2025-01-01T00:00:00");
     // Function to calculate and update the countdown
     const updateCountdown = () => {
       const currentDate = new Date();
