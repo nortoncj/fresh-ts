@@ -8,7 +8,7 @@ import "./mainpage.css";
 
 import { IoBagOutline, IoCloseOutline, IoSearch } from "react-icons/io5";
 import { Cinzel } from "next/font/google";
-import AnnouncementBar from "./components/announcmentBar";
+import AnnouncementBar from "./components/announcementBar";
 import MobileNav from "./components/mobileNav";
 import FooterNav from "./components/footerNav";
 import { redirect, useRouter } from "next/navigation";
@@ -32,7 +32,7 @@ const Navigation: React.FC<FrontNavProps> = ({ children }) => {
     <>
       <div className="">
         <section className="top-nav">
-          <AnnouncementBar />
+          <AnnouncementBar title="GRAND OPENING" />
           <MobileNav />
           <ModalProvider />
           <nav>

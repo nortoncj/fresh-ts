@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Fauna_One } from "next/font/google";
 const faunaOne = Fauna_One({ subsets: ["latin"], weight: "400" });
 
-export const AnnouncementBar = () => {
+export const CountDownBar = () => {
   // Initialize state variables for the countdown
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -84,4 +84,4 @@ export const AnnouncementBar = () => {
   );
 };
 
-export default AnnouncementBar;
+export default CountDownBar;
